@@ -1,16 +1,12 @@
 import { useEffect, useMemo, useState } from 'react'
 
-type Metric = {
+type DataResource = {
   label: string
-  value: string
-  detail: string
-  trend?: string
-}
-
-type ActionLink = {
-  label: string
+  name: string
   href: string
-  variant?: 'primary' | 'ghost'
+  source: string
+  description: string
+  filterTags?: string[]
 }
 
 type SectionInfo = {
@@ -21,11 +17,8 @@ type SectionInfo = {
   summary: string
   backgroundUrl: string
   overlay: string
-  metrics: Metric[]
-  focusAreas: string[]
-  tags: string[]
+  dataResources: DataResource[]
   filters?: string[]
-  actions: ActionLink[]
 }
 
 const sections: SectionInfo[] = [
@@ -39,39 +32,41 @@ const sections: SectionInfo[] = [
     backgroundUrl:
       'https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=1920&q=80',
     overlay: 'from-slate-950/95 via-slate-900/70 to-sky-900/40',
-    metrics: [
+    dataResources: [
       {
-        label: '世界人口に占める割合',
-        value: '1.6%',
-        trend: '+0.1pt / 10年',
-        detail: '1億2,437万人 (2024推計)',
+        label: '国際比較指標',
+        name: 'World Development Indicators (Japan subset)',
+        href: 'https://databank.worldbank.org/source/world-development-indicators',
+        source: 'World Bank',
+        description: 'GDP・人口・CO₂排出・貿易など200+指標を1960年以降の時系列で取得できます。',
+        filterTags: ['人口・社会', '経済'],
       },
       {
-        label: 'GDPシェア',
-        value: '4.0%',
-        trend: '世界4位',
-        detail: 'IMF 2023',
+        label: '地球環境',
+        name: 'Global Carbon Atlas – Japan Emissions',
+        href: 'https://globalcarbonatlas.org/en/CO2-emissions',
+        source: 'Global Carbon Project',
+        description: '化石燃料・セメント起源のCO₂排出量とプロジェクションを国別にダウンロード可能。',
+        filterTags: ['環境'],
       },
       {
-        label: '再エネ導入量',
-        value: '90GW',
-        trend: '+12% / 年',
-        detail: 'IEA 2024',
+        label: '国際経済',
+        name: 'IMF World Economic Outlook Dataset',
+        href: 'https://www.imf.org/en/Publications/WEO',
+        source: 'International Monetary Fund',
+        description: '世界190経済のGDP・インフレ・需要項目を年2回更新のExcel/CSVで提供。',
+        filterTags: ['経済'],
       },
       {
-        label: '人間開発指数',
-        value: '0.925',
-        trend: '上昇基調',
-        detail: 'UNDP 2023',
+        label: '人間開発',
+        name: 'UNDP Human Development Reports',
+        href: 'https://hdr.undp.org/data-center/documentation-and-downloads',
+        source: 'United Nations Development Programme',
+        description: 'HDI、平均就学年数、ジェンダー指数など社会指標を国際比較できます。',
+        filterTags: ['人間開発', '人口・社会'],
       },
     ],
-    focusAreas: ['人口動態', '経済・貿易', 'サステナビリティ'],
-    tags: ['World Bank', 'IMF', 'IEA'],
-    filters: ['データソース', '指標カテゴリ', 'ユニット'],
-    actions: [
-      { label: 'グローバル指標ダッシュボード', href: '#global', variant: 'primary' },
-      { label: 'データ辞書', href: '#footer', variant: 'ghost' },
-    ],
+    filters: ['人口・社会', '経済', '環境', '人間開発'],
   },
   {
     id: 'regions',
@@ -83,39 +78,41 @@ const sections: SectionInfo[] = [
     backgroundUrl:
       'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1920&q=80',
     overlay: 'from-slate-950/95 via-slate-900/70 to-emerald-900/40',
-    metrics: [
+    dataResources: [
       {
-        label: '域内総生産トップ',
-        value: '東京 ¥112兆',
-        trend: '+4.8% / 年',
-        detail: '名目 (2022)',
+        label: '道府県経済',
+        name: '県民経済計算（SNA）',
+        href: 'https://www.esri.cao.go.jp/jp/sna/kenmin/kenmin_top.html',
+        source: '内閣府 経済社会総合研究所',
+        description: '都道府県別の名目・実質GDP、所得、雇用指標を1975年以降で提供。',
+        filterTags: ['経済'],
       },
       {
-        label: '高齢化率中央値',
-        value: '29.1%',
-        trend: '最小: 東京23区',
-        detail: '地方構造調査',
+        label: '産業構造',
+        name: 'RESAS 都道府県別産業分析',
+        href: 'https://resas.go.jp/#/growth/indicators',
+        source: '内閣官房 地域活性化推進室',
+        description: '事業所数・付加価値・雇用シェアを業種×地域でビジュアライズ/CSV取得。',
+        filterTags: ['産業', '経済'],
       },
       {
-        label: '再エネ自給率',
-        value: '38% 北海道',
-        trend: '前年比 +3pt',
-        detail: 'エネ庁 2023',
+        label: '観光・モビリティ',
+        name: '訪日外国人消費動向調査（都道府県別）',
+        href: 'https://www.mlit.go.jp/kankocho/siryou/toukei/inbound.html',
+        source: '観光庁',
+        description: '旅行目的、消費単価、滞在地別の観光統計を四半期更新で公開。',
+        filterTags: ['観光'],
       },
       {
-        label: '訪日客消費',
-        value: '¥5.5兆',
-        trend: '+24% / 年',
-        detail: '観光庁 2024Q2',
+        label: 'エネルギー需給',
+        name: '再生可能エネルギー出力抑制等情報',
+        href: 'https://www.enecho.meti.go.jp/category/electricity_and_gas/electric/renewable/restriction/',
+        source: '資源エネルギー庁',
+        description: 'エリア別の再エネ導入量・出力制御実績を日別CSVでダウンロード可能。',
+        filterTags: ['エネルギー'],
       },
     ],
-    focusAreas: ['マクロ経済', '産業集積', 'モビリティ'],
-    tags: ['RESAS', '観光庁', '経産省'],
-    filters: ['地方区分', '人口規模', '産業クラスター'],
-    actions: [
-      { label: '都道府県比較プレイグラウンド', href: '#regions', variant: 'primary' },
-      { label: '指標セットをエクスポート', href: '#', variant: 'ghost' },
-    ],
+    filters: ['経済', '産業', '観光', 'エネルギー'],
   },
   {
     id: 'municipalities',
@@ -127,39 +124,41 @@ const sections: SectionInfo[] = [
     backgroundUrl:
       'https://images.unsplash.com/photo-1505764706515-aa95265c5abc?auto=format&fit=crop&w=1920&q=80',
     overlay: 'from-slate-950/95 via-indigo-900/70 to-indigo-900/30',
-    metrics: [
+    dataResources: [
       {
-        label: '住民基本台帳人口',
-        value: '1,724市区町村',
-        trend: '-0.5% / 年',
-        detail: '2024年1月1日時点',
+        label: '人口・世帯',
+        name: 'e-Stat 住民基本台帳人口移動報告',
+        href: 'https://www.e-stat.go.jp/stat-search/files?page=1&toukei=00200241',
+        source: '総務省 統計局',
+        description: '市区町村別の人口・世帯数・転入転出を年次/四半期でダウンロード。',
+        filterTags: ['人口・世帯'],
       },
       {
-        label: '財政健全化判断比率',
-        value: '3.1%',
-        trend: '警戒ライン 14%',
-        detail: '総務省 2023',
+        label: '財政',
+        name: '自治体財政状況資料集',
+        href: 'https://www.soumu.go.jp/iken/zaisei/financial_data/index.html',
+        source: '総務省 自治財政局',
+        description: '経常収支比率や公債費負担比率など財政健全化指標を決算ベースで提供。',
+        filterTags: ['財政'],
       },
       {
-        label: '待機児童ゼロ自治体',
-        value: '68%',
-        trend: '+5pt / 年',
-        detail: '厚労省 2024',
+        label: '子育て・福祉',
+        name: '保育所等関連状況取りまとめ',
+        href: 'https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000061023.html',
+        source: '厚生労働省',
+        description: '待機児童数、保育定員、認可施設一覧を自治体別に参照・取得可能。',
+        filterTags: ['福祉'],
       },
       {
-        label: '公共交通充足率',
-        value: '79路線',
-        trend: '減便幅 ▲2%',
-        detail: '国交省 2023',
+        label: 'モビリティ',
+        name: '地域公共交通確保維持改善計画データ',
+        href: 'https://www.mlit.go.jp/sogoseisaku/transport/sosei_transport_tk_000080.html',
+        source: '国土交通省',
+        description: '各自治体の交通ネットワーク、路線維持策、利用者数推移をまとめた資料。',
+        filterTags: ['交通'],
       },
     ],
-    focusAreas: ['財政・行政サービス', '子育て・教育', '都市交通'],
-    tags: ['e-Stat', '国交省', '総務省'],
-    filters: ['政令市', '中核市', '町村'],
-    actions: [
-      { label: '自治体プロフィールを見る', href: '#municipalities', variant: 'primary' },
-      { label: 'CSVでダウンロード', href: '#', variant: 'ghost' },
-    ],
+    filters: ['人口・世帯', '財政', '福祉', '交通'],
   },
   {
     id: 'neighborhoods',
@@ -171,39 +170,41 @@ const sections: SectionInfo[] = [
     backgroundUrl:
       'https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=1920&q=80&sat=-60&blend=111827&blend-mode=overlay',
     overlay: 'from-slate-950/95 via-purple-900/70 to-fuchsia-900/40',
-    metrics: [
+    dataResources: [
       {
-        label: '町丁・字数',
-        value: '217,256',
-        trend: '国勢調査 2020',
-        detail: '可視化対象エリア',
+        label: '国勢調査',
+        name: '町丁・字等別集計（人口・世帯）',
+        href: 'https://www.e-stat.go.jp/stat-search/files?page=1&toukei=00200521',
+        source: '総務省 統計局',
+        description: '町丁字レベルで人口・世帯・年齢構成を確認できる国勢調査の詳細集計。',
+        filterTags: ['人口密度'],
       },
       {
-        label: '昼夜間人口差',
-        value: '最大 4.8倍',
-        trend: '大都市圏',
-        detail: '携帯位置情報 2024',
+        label: 'モビリティ',
+        name: '人流オープンデータ（500mメッシュ）',
+        href: 'https://www.mlit.go.jp/pri/od2/',
+        source: '国土交通省 × 携帯キャリア各社',
+        description: '匿名化した携帯位置情報を用いた昼夜間人口・移動量のメッシュデータ。',
+        filterTags: ['モビリティ', '人口密度'],
       },
       {
-        label: '建物耐震指標',
-        value: '偏差 ±0.12',
-        trend: '更新率 +3pt',
-        detail: '国交省 2023',
+        label: '防災・リスク',
+        name: 'ハザードマップポータルデータセット',
+        href: 'https://disaportal.gsi.go.jp/hazardmap/download.html',
+        source: '国土地理院',
+        description: '洪水・土砂災害・高潮など複数ハザードのポリゴン/ラスターデータを一括取得。',
+        filterTags: ['防災'],
       },
       {
-        label: '商業集積スコア',
-        value: '82/100',
-        trend: '伸長中',
-        detail: 'POS + ナビログ',
+        label: '都市計画',
+        name: '都市計画基礎調査（土地利用・建物用途）',
+        href: 'https://www.mlit.go.jp/toshi/city_plan/toshi_city_plan_tk_000035.html',
+        source: '国土交通省 都市局',
+        description: '建物用途、容積率、公共施設など都市計画の基礎情報を街区単位で公開。',
+        filterTags: ['都市計画'],
       },
     ],
-    focusAreas: ['人口密度ヒートマップ', '生活インフラ', '防災・レジリエンス'],
-    tags: ['街区レベルメッシュ', '携帯位置情報', '建物台帳'],
-    filters: ['昼夜間', '用途地域', '災害リスク'],
-    actions: [
-      { label: 'ヒートマップを開く', href: '#neighborhoods', variant: 'primary' },
-      { label: 'ジオJSONを取得', href: '#', variant: 'ghost' },
-    ],
+    filters: ['人口密度', 'モビリティ', '防災', '都市計画'],
   },
 ]
 
@@ -279,110 +280,131 @@ const MobileStepper = ({ sectionsList }: { sectionsList: SectionInfo[] }) => (
   </div>
 )
 
-const ActionButton = ({ action }: { action: ActionLink }) => {
-  const baseClass =
-    'inline-flex items-center gap-2 rounded-full px-5 py-2 text-sm font-medium transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white'
-
-  if (action.variant === 'ghost') {
-    return (
-      <a
-        href={action.href}
-        className={`${baseClass} border border-white/30 text-white/80 hover:border-white/60 hover:text-white`}
-      >
-        {action.label}
-      </a>
-    )
-  }
-
-  return (
-    <a href={action.href} className={`${baseClass} bg-white text-slate-900 hover:bg-accent/90`}>
-      {action.label}
+const DataResourceCard = ({ resource }: { resource: DataResource }) => (
+  <article className="flex flex-col gap-4 rounded-2xl border border-white/10 bg-white/5 p-6 shadow-card backdrop-blur">
+    <p className="text-xs uppercase tracking-[0.4em] text-white/60">{resource.label}</p>
+    <a
+      href={resource.href}
+      target="_blank"
+      rel="noreferrer"
+      className="group inline-flex items-start gap-2 font-serif text-2xl font-semibold text-white transition hover:text-accent"
+    >
+      <span>{resource.name}</span>
+      <span aria-hidden="true" className="text-base transition group-hover:translate-x-1">
+        ↗
+      </span>
     </a>
-  )
-}
-
-const MetricCard = ({ metric }: { metric: Metric }) => (
-  <div className="flex flex-col gap-3 rounded-2xl border border-white/10 bg-white/10 p-6 shadow-card backdrop-blur">
-    <p className="text-xs uppercase tracking-[0.4em] text-white/70">{metric.label}</p>
-    <p className="font-serif text-4xl font-semibold text-white">{metric.value}</p>
-    {metric.trend && <p className="text-sm text-emerald-300">{metric.trend}</p>}
-    <p className="text-xs text-white/70">{metric.detail}</p>
-  </div>
-)
-
-const DataSection = ({ section }: { section: SectionInfo }) => (
-  <section
-    id={section.id}
-    className="relative isolate flex min-h-screen items-center py-24"
-    aria-label={`${section.level} ${section.scope}`}
-  >
-    <div className="absolute inset-0">
-      <img
-        src={section.backgroundUrl}
-        alt=""
-        className="h-full w-full object-cover"
-        sizes="100vw"
-        loading="lazy"
-      />
-      <div className={`absolute inset-0 bg-gradient-to-br ${section.overlay}`} aria-hidden="true" />
-    </div>
-
-    <div className="relative z-10 mx-auto flex w-full max-w-6xl flex-col gap-10 px-4 sm:px-6 lg:px-8">
-      <div className="flex flex-wrap items-center gap-4 text-xs uppercase tracking-[0.3em] text-white/70">
-        <span className="rounded-full border border-white/30 px-4 py-1">{section.level}</span>
-        <span>{section.scope}</span>
-      </div>
-
-      <div className="space-y-5">
-        <p className="text-sm font-medium text-accent">{section.scope}</p>
-        <h2 className="font-serif text-4xl leading-tight sm:text-5xl">{section.title}</h2>
-        <p className="max-w-3xl text-base text-white/80 sm:text-lg">{section.summary}</p>
-      </div>
-
-      <div className="flex flex-wrap gap-3 text-sm text-white/80">
-        {section.focusAreas.map((focus) => (
-          <span key={focus} className="rounded-full bg-white/10 px-4 py-1">
-            {focus}
-          </span>
-        ))}
-      </div>
-
-      {section.filters && (
-        <div className="flex flex-wrap gap-2 text-xs uppercase tracking-[0.3em] text-white/70">
-          {section.filters.map((filter) => (
-            <button
-              key={filter}
-              className="rounded-full border border-white/20 px-4 py-1 transition hover:border-white hover:text-white"
-              type="button"
-            >
-              {filter}
-            </button>
-          ))}
-        </div>
-      )}
-
-      <div className="grid gap-4 md:grid-cols-2">
-        {section.metrics.map((metric) => (
-          <MetricCard key={`${section.id}-${metric.label}`} metric={metric} />
-        ))}
-      </div>
-
-      <div className="flex flex-wrap gap-3 text-xs uppercase tracking-[0.3em] text-white/70">
-        {section.tags.map((tag) => (
-          <span key={tag} className="rounded-full border border-white/20 px-4 py-1">
+    <p className="text-sm text-white/60">提供: {resource.source}</p>
+    <p className="text-sm leading-relaxed text-white/80">{resource.description}</p>
+    {resource.filterTags && resource.filterTags.length > 0 && (
+      <div className="flex flex-wrap gap-2 text-[0.65rem] uppercase tracking-[0.3em] text-white/60">
+        {resource.filterTags.map((tag) => (
+          <span key={tag} className="rounded-full border border-white/20 px-3 py-1">
             {tag}
           </span>
         ))}
       </div>
-
-      <div className="flex flex-wrap gap-4">
-        {section.actions.map((action) => (
-          <ActionButton key={`${section.id}-${action.label}`} action={action} />
-        ))}
-      </div>
-    </div>
-  </section>
+    )}
+  </article>
 )
+
+const DataSection = ({ section }: { section: SectionInfo }) => {
+  const [selectedFilters, setSelectedFilters] = useState<string[]>([])
+
+  const toggleFilter = (filter: string) => {
+    setSelectedFilters((prev) =>
+      prev.includes(filter) ? prev.filter((item) => item !== filter) : [...prev, filter],
+    )
+  }
+
+  const clearFilters = () => setSelectedFilters([])
+
+  const filteredResources = useMemo(() => {
+    if (!selectedFilters.length) return section.dataResources
+
+    return section.dataResources.filter((resource) => {
+      const tags = resource.filterTags ?? []
+      if (!tags.length) return true
+      return tags.some((tag) => selectedFilters.includes(tag))
+    })
+  }, [section.dataResources, selectedFilters])
+
+  return (
+    <section
+      id={section.id}
+      className="relative isolate flex min-h-screen items-center py-24"
+      aria-label={`${section.level} ${section.scope}`}
+    >
+      <div className="absolute inset-0">
+        <img
+          src={section.backgroundUrl}
+          alt=""
+          className="h-full w-full object-cover"
+          sizes="100vw"
+          loading="lazy"
+        />
+        <div className={`absolute inset-0 bg-gradient-to-br ${section.overlay}`} aria-hidden="true" />
+      </div>
+
+      <div className="relative z-10 mx-auto flex w-full max-w-6xl flex-col gap-10 px-4 sm:px-6 lg:px-8">
+        <div className="flex flex-wrap items-center gap-4 text-xs uppercase tracking-[0.3em] text-white/70">
+          <span className="rounded-full border border-white/30 px-4 py-1">{section.level}</span>
+          <span>{section.scope}</span>
+        </div>
+
+        <div className="space-y-5">
+          <p className="text-sm font-medium text-accent">{section.scope}</p>
+          <h2 className="font-serif text-4xl leading-tight sm:text-5xl">{section.title}</h2>
+          <p className="max-w-3xl text-base text-white/80 sm:text-lg">{section.summary}</p>
+        </div>
+
+        {section.filters && section.filters.length > 0 && (
+          <div className="flex flex-wrap items-center gap-2 text-xs uppercase tracking-[0.3em] text-white/70">
+            {section.filters.map((filter) => {
+              const isActive = selectedFilters.includes(filter)
+              return (
+                <button
+                  key={filter}
+                  type="button"
+                  aria-pressed={isActive}
+                  onClick={() => toggleFilter(filter)}
+                  className={`rounded-full border px-4 py-1 transition ${
+                    isActive
+                      ? 'border-white bg-white/20 text-white'
+                      : 'border-white/20 text-white/70 hover:border-white hover:text-white'
+                  }`}
+                >
+                  {filter}
+                </button>
+              )
+            })}
+            {selectedFilters.length > 0 && (
+              <button
+                type="button"
+                onClick={clearFilters}
+                className="rounded-full border border-white/0 px-3 py-1 text-[0.6rem] tracking-[0.4em] text-white/60 underline-offset-4 hover:text-white"
+              >
+                クリア
+              </button>
+            )}
+          </div>
+        )}
+
+        <div className="grid gap-4 md:grid-cols-2">
+          {filteredResources.length ? (
+            filteredResources.map((resource) => (
+              <DataResourceCard key={`${section.id}-${resource.name}`} resource={resource} />
+            ))
+          ) : (
+            <p className="col-span-full rounded-2xl border border-dashed border-white/20 bg-white/5 p-6 text-sm text-white/70">
+              選択されたフィルターに一致するデータセットがありません。条件を緩めてください。
+            </p>
+          )}
+        </div>
+      </div>
+    </section>
+  )
+}
 
 const App = () => {
   const sectionIds = useMemo(() => sections.map((section) => section.id), [])
