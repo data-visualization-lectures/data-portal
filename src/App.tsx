@@ -62,6 +62,19 @@ const sections: SectionInfo[] = [
     overlay: 'from-slate-950/95 via-slate-900/70 to-emerald-900/40',
     dataResources: [
       {
+        name: '日本地図',
+        source: '国土交通省 国土地理院',
+        sourceUrl: '',
+        description: '使いやすく手入れされた都道府県別の日本地図',
+        filterTags: ['地図'],
+        downloadLinks: [
+          {
+            label: 'GeoJSON',
+            href: '/datasets/2_regions/land/japan.geojson',
+          },
+        ],
+      },
+      {
         name: 'SSDSE（教育用標準データセット）',
         source: '独立行政法人 統計センター',
         sourceUrl: 'https://www.nstac.go.jp/use/literacy/ssdse/',
@@ -79,7 +92,7 @@ const sections: SectionInfo[] = [
         ],
       }
     ],
-    filters: ['統計','家計','社会','気候'],
+    filters: ['統計','家計','社会','気候','地図'],
   },
   {
     id: 'municipalities',
