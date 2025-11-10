@@ -109,7 +109,7 @@ const sections: SectionInfo[] = [
         name: 'Starbucks 店舗リスト',
         source: '店舗検索｜スターバックス コーヒー ジャパン',
         sourceUrl: 'https://store.starbucks.co.jp/',
-        description: '公式サイトで公開されている東京都多摩地区における店舗情報（緯度経度は含みません）。',
+        description: '公式サイトで公開されている東京都における店舗情報（緯度経度は含みません）。',
         filterTags: ['飲食'],
         downloadLinks: [
           {
@@ -164,7 +164,7 @@ const sections: SectionInfo[] = [
         ],
       },
       {
-        name: 'Spotifyで公開されている楽曲',
+        name: 'Spotifyで公開されている楽曲の特徴',
         source: 'Kaggle',
         sourceUrl: 'https://www.kaggle.com/datasets/maharshipandya/-spotify-tracks-dataset/data',
         description: 'さまざまなジャンルのSpotifyの曲とそのオーディオ特徴のデータセット',
