@@ -453,7 +453,7 @@ const App = () => {
       </main>
 
       <footer id="footer" className="border-t border-white/10 bg-slate-950/80 py-10 text-center text-sm text-white/50">
-        <p>© Visualizing.JP. データソースの詳細は各セクションを参照してください。</p>
+        <p>© <a href="https://visualizing.jp/" target="_blank">Visualizing.JP</a> | <a href="https://www.dataviz.jp/" target="_blank">Dataviz.JP</a></p>
       </footer>
 
       <MobileStepper sectionsList={sections} />
