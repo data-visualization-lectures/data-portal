@@ -1,12 +1,12 @@
 import { useEffect, useMemo, useState } from 'react'
 
 type DataResource = {
-  label: string
   name: string
-  href: string
   source: string
+  sourceUrl?: string
   description: string
   filterTags?: string[]
+  downloadLinks: { label: string; href: string }[]
 }
 
 type SectionInfo = {
@@ -26,9 +26,9 @@ const sections: SectionInfo[] = [
     id: 'cosmos',
     level: '0段目',
     scope: '宇宙視点',
-    title: '軌道上から俯瞰する地球の脈動',
+    title: '宇宙から俯瞰する地球の脈動',
     summary:
-      '人工衛星や深宇宙ミッションが捉える観測データを通じて、地球規模のダイナミクスと日本の存在を宇宙視点から理解します。',
+      '地球規模のダイナミクスと日本の存在を、宇宙視点から理解します。',
     backgroundUrl:
       'https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=1920&q=80',
     overlay: 'from-slate-950/95 via-violet-900/70 to-indigo-900/40',
@@ -47,45 +47,13 @@ const sections: SectionInfo[] = [
       'https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=1920&q=80',
     overlay: 'from-slate-950/95 via-slate-900/70 to-sky-900/40',
     dataResources: [
-      {
-        label: '国際比較指標',
-        name: 'World Development Indicators (Japan subset)',
-        href: 'https://databank.worldbank.org/source/world-development-indicators',
-        source: 'World Bank',
-        description: 'GDP・人口・CO₂排出・貿易など200+指標を1960年以降の時系列で取得できます。',
-        filterTags: ['人口・社会', '経済'],
-      },
-      {
-        label: '地球環境',
-        name: 'Global Carbon Atlas – Japan Emissions',
-        href: 'https://globalcarbonatlas.org/en/CO2-emissions',
-        source: 'Global Carbon Project',
-        description: '化石燃料・セメント起源のCO₂排出量とプロジェクションを国別にダウンロード可能。',
-        filterTags: ['環境'],
-      },
-      {
-        label: '国際経済',
-        name: 'IMF World Economic Outlook Dataset',
-        href: 'https://www.imf.org/en/Publications/WEO',
-        source: 'International Monetary Fund',
-        description: '世界190経済のGDP・インフレ・需要項目を年2回更新のExcel/CSVで提供。',
-        filterTags: ['経済'],
-      },
-      {
-        label: '人間開発',
-        name: 'UNDP Human Development Reports',
-        href: 'https://hdr.undp.org/data-center/documentation-and-downloads',
-        source: 'United Nations Development Programme',
-        description: 'HDI、平均就学年数、ジェンダー指数など社会指標を国際比較できます。',
-        filterTags: ['人間開発', '人口・社会'],
-      },
     ],
     filters: ['人口・社会', '経済', '環境', '人間開発'],
   },
   {
     id: 'regions',
     level: '2段目',
-    scope: '広域自治体 (都道府県)',
+    scope: '都道府県視点',
     title: '広域自治体で俯瞰する地域ポートフォリオ',
     summary:
       '道府県別のデータをもとに、地域の強みと課題を一目で比較できます。',
@@ -93,46 +61,14 @@ const sections: SectionInfo[] = [
       'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1920&q=80',
     overlay: 'from-slate-950/95 via-slate-900/70 to-emerald-900/40',
     dataResources: [
-      {
-        label: '道府県経済',
-        name: '県民経済計算（SNA）',
-        href: 'https://www.esri.cao.go.jp/jp/sna/kenmin/kenmin_top.html',
-        source: '内閣府 経済社会総合研究所',
-        description: '都道府県別の名目・実質GDP、所得、雇用指標を1975年以降で提供。',
-        filterTags: ['経済'],
-      },
-      {
-        label: '産業構造',
-        name: 'RESAS 都道府県別産業分析',
-        href: 'https://resas.go.jp/#/growth/indicators',
-        source: '内閣官房 地域活性化推進室',
-        description: '事業所数・付加価値・雇用シェアを業種×地域でビジュアライズ/CSV取得。',
-        filterTags: ['産業', '経済'],
-      },
-      {
-        label: '観光・モビリティ',
-        name: '訪日外国人消費動向調査（都道府県別）',
-        href: 'https://www.mlit.go.jp/kankocho/siryou/toukei/inbound.html',
-        source: '観光庁',
-        description: '旅行目的、消費単価、滞在地別の観光統計を四半期更新で公開。',
-        filterTags: ['観光'],
-      },
-      {
-        label: 'エネルギー需給',
-        name: '再生可能エネルギー出力抑制等情報',
-        href: 'https://www.enecho.meti.go.jp/category/electricity_and_gas/electric/renewable/restriction/',
-        source: '資源エネルギー庁',
-        description: 'エリア別の再エネ導入量・出力制御実績を日別CSVでダウンロード可能。',
-        filterTags: ['エネルギー'],
-      },
     ],
     filters: ['経済', '産業', '観光', 'エネルギー'],
   },
   {
     id: 'municipalities',
     level: '3段目',
-    scope: '基礎自治体 (市区町村)',
-    title: '市区町村プロファイルから見る暮らしの構造',
+    scope: '市区町村視点',
+    title: '基礎自治体プロファイルから見る暮らしの構造',
     summary:
       '財政指標、教育・福祉、モビリティデータを掛け合わせ、市区町村のポートフォリオを探索・比較できます。',
     backgroundUrl:
@@ -140,85 +76,74 @@ const sections: SectionInfo[] = [
     overlay: 'from-slate-950/95 via-indigo-900/70 to-indigo-900/30',
     dataResources: [
       {
-        label: '人口・世帯',
-        name: 'e-Stat 住民基本台帳人口移動報告',
-        href: 'https://www.e-stat.go.jp/stat-search/files?page=1&toukei=00200241',
-        source: '総務省 統計局',
-        description: '市区町村別の人口・世帯数・転入転出を年次/四半期でダウンロード。',
-        filterTags: ['人口・世帯'],
-      },
-      {
-        label: '財政',
-        name: '自治体財政状況資料集',
-        href: 'https://www.soumu.go.jp/iken/zaisei/financial_data/index.html',
-        source: '総務省 自治財政局',
-        description: '経常収支比率や公債費負担比率など財政健全化指標を決算ベースで提供。',
-        filterTags: ['財政'],
-      },
-      {
-        label: '子育て・福祉',
-        name: '保育所等関連状況取りまとめ',
-        href: 'https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000061023.html',
-        source: '厚生労働省',
-        description: '待機児童数、保育定員、認可施設一覧を自治体別に参照・取得可能。',
-        filterTags: ['福祉'],
-      },
-      {
-        label: 'モビリティ',
-        name: '地域公共交通確保維持改善計画データ',
-        href: 'https://www.mlit.go.jp/sogoseisaku/transport/sosei_transport_tk_000080.html',
-        source: '国土交通省',
-        description: '各自治体の交通ネットワーク、路線維持策、利用者数推移をまとめた資料。',
-        filterTags: ['交通'],
-      },
+        name: 'Airbnb 物件リスト',
+        source: 'Get the Data | Inside Airbnb',
+        sourceUrl: 'https://insideairbnb.com/get-the-data/',
+        description: 'AirBnB で公開されている、東京の物件リストの概要情報と指標。',
+        filterTags: ['住居'],
+        downloadLinks: [
+          {
+            label: 'Dropbox',
+            href: 'https://www.dropbox.com/scl/fo/jsdzqj0tixssf44p47ovp/AKNt7z29Kr84TG8pFx4BgpE?rlkey=ftu6986fs00na7w3tf2c6nihb&dl=0',
+          },
+        ],
+      }
     ],
-    filters: ['人口・世帯', '財政', '福祉', '交通'],
+    filters: ['住居', '旅行'],
   },
   {
     id: 'neighborhoods',
     level: '4段目',
-    scope: '町丁・字レベル',
+    scope: '町丁視点',
     title: '町丁レベルで観測する都市の鼓動',
     summary:
-      '身の回りの小さい単位で地域の特性を知ることができます。',
+      '街区単位の人口密度や土地利用、災害リスク、商業集積を重ね合わせ、都市計画・エリアマネジメントに役立つ洞察を提供します。',
     backgroundUrl:
-      'https://images.unsplash.com/photo-1505764706515-aa95265c5abc?auto=format&fit=crop&w=1920&q=80',
+      'https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=1920&q=80&sat=-60&blend=111827&blend-mode=overlay',
     overlay: 'from-slate-950/95 via-purple-900/70 to-fuchsia-900/40',
     dataResources: [
-      {
-        label: '国勢調査',
-        name: '町丁・字等別集計（人口・世帯）',
-        href: 'https://www.e-stat.go.jp/stat-search/files?page=1&toukei=00200521',
-        source: '総務省 統計局',
-        description: '町丁字レベルで人口・世帯・年齢構成を確認できる国勢調査の詳細集計。',
-        filterTags: ['人口密度'],
-      },
-      {
-        label: 'モビリティ',
-        name: '人流オープンデータ（500mメッシュ）',
-        href: 'https://www.mlit.go.jp/pri/od2/',
-        source: '国土交通省 × 携帯キャリア各社',
-        description: '匿名化した携帯位置情報を用いた昼夜間人口・移動量のメッシュデータ。',
-        filterTags: ['モビリティ', '人口密度'],
-      },
-      {
-        label: '防災・リスク',
-        name: 'ハザードマップポータルデータセット',
-        href: 'https://disaportal.gsi.go.jp/hazardmap/download.html',
-        source: '国土地理院',
-        description: '洪水・土砂災害・高潮など複数ハザードのポリゴン/ラスターデータを一括取得。',
-        filterTags: ['防災'],
-      },
-      {
-        label: '都市計画',
-        name: '都市計画基礎調査（土地利用・建物用途）',
-        href: 'https://www.mlit.go.jp/toshi/city_plan/toshi_city_plan_tk_000035.html',
-        source: '国土交通省 都市局',
-        description: '建物用途、容積率、公共施設など都市計画の基礎情報を街区単位で公開。',
-        filterTags: ['都市計画'],
-      },
     ],
     filters: ['人口密度', 'モビリティ', '防災', '都市計画'],
+  },
+  {
+    id: 'communities',
+    level: '5段目',
+    scope: 'コミュニティ視点',
+    title: 'ローカルアクションを束ねる市民の知',
+    summary:
+      '地域コミュニティや民間プロジェクトが公開するオープンデータを集め、草の根の取り組みやニーズを把握します。',
+    backgroundUrl:
+      'https://images.unsplash.com/photo-1492724441997-5dc865305da7?auto=format&fit=crop&w=1920&q=80',
+    overlay: 'from-slate-950/95 via-rose-900/70 to-orange-900/40',
+    dataResources: [
+      {
+        name: 'IBM 従業員の離職率とパフォーマンス',
+        source: 'Kaggle',
+        sourceUrl: 'https://www.kaggle.com/datasets/pavansubhasht/ibm-hr-analytics-attrition-dataset',
+        description: 'IBMのデータサイエンティストが作成した架空のデータセット。従業員の様々な属性を一つの表データにしています。',
+        filterTags: ['人事'],
+        downloadLinks: [
+          {
+            label: 'CSV',
+            href: '/datasets/5_communities/employee/employee.csv',
+          },
+        ],
+      },
+      {
+        name: 'Spotifyで公開されている楽曲',
+        source: 'Kaggle',
+        sourceUrl: 'https://www.kaggle.com/datasets/maharshipandya/-spotify-tracks-dataset/data',
+        description: 'さまざまなジャンルのSpotifyの曲とそのオーディオ特徴のデータセット',
+        filterTags: ['音楽'],
+        downloadLinks: [
+          {
+            label: 'CSV',
+            href: '/datasets/5_communities/spotify/spotify.csv',
+          },
+        ],
+      }
+    ],
+    filters: ['人事','音楽'],
   },
 ]
 
@@ -294,33 +219,49 @@ const MobileStepper = ({ sectionsList }: { sectionsList: SectionInfo[] }) => (
   </div>
 )
 
-const DataResourceCard = ({ resource }: { resource: DataResource }) => (
-  <article className="flex flex-col gap-4 rounded-2xl border border-white/10 bg-white/5 p-6 shadow-card backdrop-blur">
-    <p className="text-xs uppercase tracking-[0.4em] text-white/60">{resource.label}</p>
-    <a
-      href={resource.href}
-      target="_blank"
-      rel="noreferrer"
-      className="group inline-flex items-start gap-2 font-serif text-2xl font-semibold text-white transition hover:text-accent"
-    >
-      <span>{resource.name}</span>
-      <span aria-hidden="true" className="text-base transition group-hover:translate-x-1">
-        ↗
-      </span>
-    </a>
-    <p className="text-sm text-white/60">提供: {resource.source}</p>
-    <p className="text-sm leading-relaxed text-white/80">{resource.description}</p>
-    {resource.filterTags && resource.filterTags.length > 0 && (
-      <div className="flex flex-wrap gap-2 text-[0.65rem] uppercase tracking-[0.3em] text-white/60">
-        {resource.filterTags.map((tag) => (
-          <span key={tag} className="rounded-full border border-white/20 px-3 py-1">
+const DataResourceCard = ({ resource }: { resource: DataResource }) => {
+  const downloadLinks = resource.downloadLinks ?? []
+
+  return (
+    <article className="flex flex-col gap-4 rounded-2xl border border-white/10 bg-white/5 p-6 shadow-card backdrop-blur">
+      <div className="flex flex-wrap gap-2 text-[0.6rem] uppercase tracking-[0.3em] text-white/60">
+        {(resource.filterTags ?? []).map((tag) => (
+          <span key={`${resource.name}-${tag}`} className="border border-white/20 px-3 py-1">
             {tag}
           </span>
         ))}
       </div>
-    )}
-  </article>
-)
+      <p className="font-serif text-2xl font-semibold text-white">{resource.name}</p>
+      <p className="text-sm text-white/60">
+        提供:{' '}
+        <a
+          href={resource.sourceUrl ?? downloadLinks[0]?.href ?? '#'}
+          target="_blank"
+          rel="noreferrer"
+          className="text-white underline-offset-4 transition hover:text-accent"
+        >
+          {resource.source}
+        </a>
+      </p>
+      <p className="text-sm leading-relaxed text-white/80">{resource.description}</p>
+      {downloadLinks.length > 0 && (
+        <div className="flex flex-wrap gap-2 text-xs font-medium text-slate-900">
+          {downloadLinks.map((link) => (
+            <a
+              key={`${resource.name}-${link.label}`}
+              href={link.href}
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center gap-1 rounded-full bg-white/90 px-3 py-1 text-[0.65rem] uppercase tracking-[0.3em] transition hover:bg-accent hover:text-slate-900"
+            >
+              {link.label}
+            </a>
+          ))}
+        </div>
+      )}
+    </article>
+  )
+}
 
 const DataSection = ({ section }: { section: SectionInfo }) => {
   const [selectedFilters, setSelectedFilters] = useState<string[]>([])
@@ -433,10 +374,10 @@ const App = () => {
       </a>
 
       <header className="fixed inset-x-0 top-0 z-40 border-b border-white/10 bg-midnight/70 backdrop-blur">
-        <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
+        <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-2 sm:px-6 lg:px-8">
           <div>
             <p className="text-xs uppercase tracking-[0.4em] text-white/60">Data Portal</p>
-            <p className="font-serif text-xl">Japan Insight Deck</p>
+            <p className="font-serif text-xl">Japan Insight Hub</p>
           </div>
           <button className="rounded-full border border-white/20 px-4 py-2 text-xs uppercase tracking-[0.3em] text-white/80 md:hidden">
             Menu
@@ -446,7 +387,7 @@ const App = () => {
 
       <SectionNavigation sectionsList={sections} activeId={activeSection} />
 
-      <main className="pt-24">
+      <main className="pt-16">
         {sections.map((section) => (
           <DataSection key={section.id} section={section} />
         ))}
