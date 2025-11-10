@@ -61,14 +61,31 @@ const sections: SectionInfo[] = [
       'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1920&q=80',
     overlay: 'from-slate-950/95 via-slate-900/70 to-emerald-900/40',
     dataResources: [
+      {
+        name: 'SSDSE（教育用標準データセット）',
+        source: 'Get the Data | Inside Airbnb',
+        sourceUrl: 'https://www.nstac.go.jp/use/literacy/ssdse/',
+        description: 'データ分析のための汎用素材として、独立行政法人統計センターが作成・公開している統計データです。',
+        filterTags: ['統計','家計','社会','気候'],
+        downloadLinks: [
+          {
+            label: 'SSDSE C - Spreadsheet',
+            href: 'https://docs.google.com/spreadsheets/d/1J1PMktKcNssBfz_W-0YfuLQdAODwevG84GvlVSpjWLw/edit?usp=sharing',
+          },
+          {
+            label: 'SSDSE E - Spreadsheet',
+            href: 'https://docs.google.com/spreadsheets/d/1qg4vJxdkOGdjI3DPwTNfdfLdqItYTFvnDy2AtNdGUqU/edit?usp=sharing',
+          },
+        ],
+      }
     ],
-    filters: ['経済', '産業', '観光', 'エネルギー'],
+    filters: ['統計','家計','社会','気候'],
   },
   {
     id: 'municipalities',
     level: '3段目',
     scope: '市区町村視点',
-    title: '基礎自治体プロファイルから見る暮らしの構造',
+    title: '基礎自治体から見る暮らしの構造',
     summary:
       '財政指標、教育・福祉、モビリティデータを掛け合わせ、市区町村のポートフォリオを探索・比較できます。',
     backgroundUrl:
@@ -80,16 +97,29 @@ const sections: SectionInfo[] = [
         source: 'Get the Data | Inside Airbnb',
         sourceUrl: 'https://insideairbnb.com/get-the-data/',
         description: 'AirBnB で公開されている、東京の物件リストの概要情報と指標。',
-        filterTags: ['住居'],
+        filterTags: ['住居','旅行'],
         downloadLinks: [
           {
             label: 'Dropbox',
             href: 'https://www.dropbox.com/scl/fo/jsdzqj0tixssf44p47ovp/AKNt7z29Kr84TG8pFx4BgpE?rlkey=ftu6986fs00na7w3tf2c6nihb&dl=0',
           },
         ],
+      },
+      {
+        name: 'Starbucks 店舗リスト',
+        source: '店舗検索｜スターバックス コーヒー ジャパン',
+        sourceUrl: 'https://store.starbucks.co.jp/',
+        description: '公式サイトで公開されている八王子市、立川市、昭島市、日野市、多摩市、相模原市における店舗情報（緯度経度は含みません）。',
+        filterTags: ['飲食'],
+        downloadLinks: [
+          {
+            label: 'CSV',
+            href: '/datasets/3_municipalities/starbucks/starbucks_251110.csv',
+          },
+        ],
       }
     ],
-    filters: ['住居', '旅行'],
+    filters: ['住居','旅行','飲食'],
   },
   {
     id: 'neighborhoods',
