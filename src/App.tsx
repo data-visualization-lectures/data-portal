@@ -56,7 +56,7 @@ const sections: SectionInfo[] = [
     scope: '都道府県視点',
     title: '広域自治体で俯瞰する地域ポートフォリオ',
     summary:
-      '道府県別のデータをもとに、地域の強みと課題を一目で比較できます。',
+      '都道府県別のデータをもとに、地域の強みと課題を一目で比較できます。',
     backgroundUrl:
       'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1920&q=80',
     overlay: 'from-slate-950/95 via-slate-900/70 to-emerald-900/40',
@@ -87,7 +87,7 @@ const sections: SectionInfo[] = [
     scope: '市区町村視点',
     title: '基礎自治体から見る暮らしの構造',
     summary:
-      '財政指標、教育・福祉、モビリティデータを掛け合わせ、市区町村のポートフォリオを探索・比較できます。',
+      '市区町村別のデータをもとに、地域の強みや課題などを把握できます。',
     backgroundUrl:
       'https://images.unsplash.com/photo-1489515217757-5fd1be406fef?auto=format&fit=crop&w=1920&q=80',
     overlay: 'from-slate-950/95 via-indigo-900/70 to-indigo-900/30',
@@ -131,7 +131,7 @@ const sections: SectionInfo[] = [
     scope: '町丁視点',
     title: '町丁レベルで観測する都市の鼓動',
     summary:
-      '街区単位の人口密度や土地利用、災害リスク、商業集積を重ね合わせ、都市計画・エリアマネジメントに役立つ洞察を提供します。',
+      '身の回りの小さな区域の特性を理解しよう。',
     backgroundUrl:
       'https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=1920&q=80&sat=-60&blend=111827&blend-mode=overlay',
     overlay: 'from-slate-950/95 via-purple-900/70 to-fuchsia-900/40',
@@ -143,7 +143,7 @@ const sections: SectionInfo[] = [
     id: 'communities',
     level: '5段目',
     scope: 'コミュニティ視点',
-    title: 'ローカルアクションを束ねる市民の知',
+    title: 'ローカルアクションを束ねる知',
     summary:
       '地域コミュニティや民間プロジェクトが公開するオープンデータを集め、草の根の取り組みやニーズを把握します。',
     backgroundUrl:
