@@ -133,8 +133,8 @@ const sections: SectionInfo[] = [
     summary:
       '身の回りの小さな区域の特性を理解しよう。',
     backgroundUrl:
-      'https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=1920&q=80&sat=-60&blend=111827&blend-mode=overlay',
-    overlay: 'from-slate-950/95 via-purple-900/70 to-fuchsia-900/40',
+      'https://images.unsplash.com/photo-1689075326462-581d7705c0ef?auto=format&fit=crop&w=1920&q=80&blend=0f172a&blend-mode=multiply',
+    overlay: 'from-slate-900/70 via-amber-700/30 to-white/10',
     dataResources: [
     ],
     filters: ['人口密度', 'モビリティ', '防災', '都市計画'],
