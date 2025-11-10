@@ -440,7 +440,7 @@ const App = () => {
       </main>
 
       <footer id="footer" className="border-t border-white/10 bg-slate-950/80 py-10 text-center text-sm text-white/50">
-        <p>© {new Date().getFullYear()} Data Portal Prototype. データソースの詳細は各セクションのタグを参照してください。</p>
+        <p>© Visualizing.JP. データソースの詳細は各セクションを参照してください。</p>
       </footer>
 
       <MobileStepper sectionsList={sections} />
