@@ -63,7 +63,7 @@ const sections: SectionInfo[] = [
     dataResources: [
       {
         name: 'SSDSE（教育用標準データセット）',
-        source: 'Get the Data | Inside Airbnb',
+        source: '独立行政法人 統計センター',
         sourceUrl: 'https://www.nstac.go.jp/use/literacy/ssdse/',
         description: 'データ分析のための汎用素材として、独立行政法人統計センターが作成・公開している統計データです。',
         filterTags: ['統計','家計','社会','気候'],
