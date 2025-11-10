@@ -6,7 +6,7 @@ type DataResource = {
   sourceUrl?: string
   description: string
   filterTags?: string[]
-  downloadLinks: { label: string; href: string }[]
+  downloadLinks: { label: string; href: string; downloadName?: string }[]
 }
 
 type SectionInfo = {
@@ -280,17 +280,19 @@ const DataResourceCard = ({ resource }: { resource: DataResource }) => {
       <p className="text-sm leading-relaxed text-white/80">{resource.description}</p>
       {downloadLinks.length > 0 && (
         <div className="flex flex-wrap gap-2 text-xs font-medium text-slate-900">
-          {downloadLinks.map((link) => (
-            <a
-              key={`${resource.name}-${link.label}`}
-              href={link.href}
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex items-center gap-1 rounded-full bg-white/90 px-3 py-1 text-[0.65rem] uppercase tracking-[0.3em] transition hover:bg-accent hover:text-slate-900"
-            >
-              {link.label}
-            </a>
-          ))}
+          {downloadLinks.map((link) => {
+            const downloadName = link.downloadName ?? link.href.split('/').pop() ?? 'dataset'
+            return (
+              <a
+                key={`${resource.name}-${link.label}`}
+                href={link.href}
+                download={downloadName}
+                className="inline-flex items-center gap-1 rounded-full bg-white/90 px-3 py-1 text-[0.65rem] uppercase tracking-[0.3em] transition hover:bg-accent hover:text-slate-900"
+              >
+                {link.label}
+              </a>
+            )
+          })}
         </div>
       )}
     </article>
