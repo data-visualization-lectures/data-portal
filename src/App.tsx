@@ -26,9 +26,9 @@ const sections: SectionInfo[] = [
     id: 'global',
     level: '1段目',
     scope: '世界視点',
-    title: '世界の中の日本',
+    title: '世界の中での日本の位置づけ',
     summary:
-      '人口動態・GDP・温室効果ガスといった主要指標から、日本が世界のなかでどの位置にいるのかを俯瞰します。',
+      '主要指標から、日本が世界のなかでどの位置にいるのかを俯瞰します。',
     backgroundUrl:
       'https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=1920&q=80',
     overlay: 'from-slate-950/95 via-slate-900/70 to-sky-900/40',
@@ -72,9 +72,9 @@ const sections: SectionInfo[] = [
     id: 'regions',
     level: '2段目',
     scope: '広域自治体 (都道府県)',
-    title: '地域ブロックでみる日本',
+    title: '広域自治体で俯瞰する地域ポートフォリオ',
     summary:
-      '道府県別の経済規模や産業構成、エネルギー需給、観光データを集約し、地域間の強みと課題を一目で比較できます。',
+      '道府県別のデータをもとに、地域の強みと課題を一目で比較できます。',
     backgroundUrl:
       'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1920&q=80',
     overlay: 'from-slate-950/95 via-slate-900/70 to-emerald-900/40',
@@ -118,11 +118,11 @@ const sections: SectionInfo[] = [
     id: 'municipalities',
     level: '3段目',
     scope: '基礎自治体 (市区町村)',
-    title: '都市とコミュニティの姿',
+    title: '市区町村プロファイルから見る暮らしの構造',
     summary:
       '財政指標、教育・福祉、モビリティデータを掛け合わせ、市区町村のポートフォリオを探索・比較できます。',
     backgroundUrl:
-      'https://images.unsplash.com/photo-1505764706515-aa95265c5abc?auto=format&fit=crop&w=1920&q=80',
+      'https://images.unsplash.com/photo-1489515217757-5fd1be406fef?auto=format&fit=crop&w=1920&q=80',
     overlay: 'from-slate-950/95 via-indigo-900/70 to-indigo-900/30',
     dataResources: [
       {
@@ -164,11 +164,11 @@ const sections: SectionInfo[] = [
     id: 'neighborhoods',
     level: '4段目',
     scope: '町丁・字レベル',
-    title: '暮らしの肌感に迫る粒度',
+    title: '町丁レベルで観測する都市の鼓動',
     summary:
-      '街区単位の人口密度や土地利用、災害リスク、商業集積を重ね合わせ、都市計画・エリアマネジメントに役立つ洞察を提供します。',
+      '身の回りの小さい単位で地域の特性を知ることができます。',
     backgroundUrl:
-      'https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=1920&q=80&sat=-60&blend=111827&blend-mode=overlay',
+      'https://images.unsplash.com/photo-1505764706515-aa95265c5abc?auto=format&fit=crop&w=1920&q=80',
     overlay: 'from-slate-950/95 via-purple-900/70 to-fuchsia-900/40',
     dataResources: [
       {
@@ -347,16 +347,11 @@ const DataSection = ({ section }: { section: SectionInfo }) => {
       </div>
 
       <div className="relative z-10 mx-auto flex w-full max-w-6xl flex-col gap-10 px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-wrap items-center gap-4 text-xs uppercase tracking-[0.3em] text-white/70">
-          <span className="rounded-full border border-white/30 px-4 py-1">{section.level}</span>
-          <span>{section.scope}</span>
-        </div>
-
         <div className="space-y-5">
           <p className="text-sm font-medium text-accent">{section.scope}</p>
-          <h2 className="font-serif text-4xl leading-tight sm:text-5xl">{section.title}</h2>
-          <p className="max-w-3xl text-base text-white/80 sm:text-lg">{section.summary}</p>
-        </div>
+        <h2 className="font-serif text-4xl leading-tight sm:text-5xl">{section.title}</h2>
+        <p className="text-base text-white/80 sm:text-lg">{section.summary}</p>
+      </div>
 
         {section.filters && section.filters.length > 0 && (
           <div className="flex flex-wrap items-center gap-2 text-xs uppercase tracking-[0.3em] text-white/70">
