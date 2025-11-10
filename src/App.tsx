@@ -69,11 +69,11 @@ const sections: SectionInfo[] = [
         filterTags: ['統計','家計','社会','気候'],
         downloadLinks: [
           {
-            label: 'SSDSE C - Spreadsheet',
+            label: 'SSDSE C・Spreadsheet',
             href: 'https://docs.google.com/spreadsheets/d/1J1PMktKcNssBfz_W-0YfuLQdAODwevG84GvlVSpjWLw/edit?usp=sharing',
           },
           {
-            label: 'SSDSE E - Spreadsheet',
+            label: 'SSDSE E・Spreadsheet',
             href: 'https://docs.google.com/spreadsheets/d/1qg4vJxdkOGdjI3DPwTNfdfLdqItYTFvnDy2AtNdGUqU/edit?usp=sharing',
           },
         ],
@@ -96,11 +96,11 @@ const sections: SectionInfo[] = [
         name: 'Airbnb 物件リスト',
         source: 'Get the Data | Inside Airbnb',
         sourceUrl: 'https://insideairbnb.com/get-the-data/',
-        description: 'AirBnB で公開されている、東京の物件リストの概要情報と指標。',
+        description: 'AirBnB で公開されている東京の物件リストの概要情報と指標。',
         filterTags: ['住居','旅行'],
         downloadLinks: [
           {
-            label: 'Dropbox',
+            label: '東京都・Dropbox',
             href: 'https://www.dropbox.com/scl/fo/jsdzqj0tixssf44p47ovp/AKNt7z29Kr84TG8pFx4BgpE?rlkey=ftu6986fs00na7w3tf2c6nihb&dl=0',
           },
         ],
@@ -109,13 +109,17 @@ const sections: SectionInfo[] = [
         name: 'Starbucks 店舗リスト',
         source: '店舗検索｜スターバックス コーヒー ジャパン',
         sourceUrl: 'https://store.starbucks.co.jp/',
-        description: '公式サイトで公開されている八王子市、立川市、昭島市、日野市、多摩市、相模原市における店舗情報（緯度経度は含みません）。',
+        description: '公式サイトで公開されている東京都多摩地区における店舗情報（緯度経度は含みません）。',
         filterTags: ['飲食'],
         downloadLinks: [
           {
-            label: 'CSV',
-            href: '/datasets/3_municipalities/starbucks/starbucks_251110.csv',
+            label: '特別区23区・Spreadsheet',
+            href: 'https://docs.google.com/spreadsheets/d/1braD7p5SRfQKxLTOOKmTpy7-sCcdB7naFkrjyon35Fs/edit?usp=sharing',
           },
+          {
+            label: '多摩地区・Spreadsheet',
+            href: 'https://docs.google.com/spreadsheets/d/1CNqgp-hWcrYe1Bg0LJwpuKzGyUwoseL8SAbsDdCsyes/edit?usp=sharing',
+          }
         ],
       }
     ],
