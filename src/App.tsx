@@ -33,38 +33,6 @@ const sections: SectionInfo[] = [
       'https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=1920&q=80',
     overlay: 'from-slate-950/95 via-violet-900/70 to-indigo-900/40',
     dataResources: [
-      {
-        label: '地球観測',
-        name: 'NASA Earthdata (MODIS / VIIRS)',
-        href: 'https://earthdata.nasa.gov/',
-        source: 'NASA',
-        description: '雲量、海面水温、植生指数など地球全体のリモートセンシングデータをAPIとFTPで提供。',
-        filterTags: ['地球観測', '気候'],
-      },
-      {
-        label: '環境モニタリング',
-        name: 'Copernicus Open Access Hub',
-        href: 'https://scihub.copernicus.eu/',
-        source: 'ESA',
-        description: 'Sentinel衛星のSAR・光学データをダウンロードし、土壌水分や都市ヒートなどを解析可能。',
-        filterTags: ['地球観測', '環境'],
-      },
-      {
-        label: '宇宙天候',
-        name: 'NOAA Space Weather Prediction Center',
-        href: 'https://www.swpc.noaa.gov/products-and-data',
-        source: 'NOAA',
-        description: '太陽風、磁気嵐、放射線など宇宙天気データをリアルタイムで配信し、通信・電力網リスクを評価。',
-        filterTags: ['宇宙天候'],
-      },
-      {
-        label: '日本の衛星',
-        name: 'JAXA G-Portal',
-        href: 'https://gportal.jaxa.jp/gpr/',
-        source: 'JAXA',
-        description: 'GOSAT・ALOSなど日本の衛星観測データを無償提供。大気組成や高解像度地形を取得可能。',
-        filterTags: ['地球観測', '衛星データ'],
-      },
     ],
     filters: ['地球観測', '気候', '宇宙天候', '衛星データ'],
   },
@@ -432,7 +400,11 @@ const DataSection = ({ section }: { section: SectionInfo }) => {
         )}
 
         <div className="grid gap-4 md:grid-cols-2">
-          {filteredResources.length ? (
+          {section.dataResources.length === 0 ? (
+            <p className="col-span-full rounded-2xl border border-dashed border-white/20 bg-white/5 p-6 text-sm text-white/70">
+              この粒度に紐づくデータソースはまだ登録されていません。近日中に公開予定です。
+            </p>
+          ) : filteredResources.length ? (
             filteredResources.map((resource) => (
               <DataResourceCard key={`${section.id}-${resource.name}`} resource={resource} />
             ))
