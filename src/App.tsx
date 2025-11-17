@@ -197,8 +197,12 @@ const sections: SectionInfo[] = [
         filterTags: ['漫画'],
         downloadLinks: [
           {
-            label: 'Spreadsheet',
-            href: 'https://docs.google.com/spreadsheets/d/1JFglI_jkewWwtWgeJ-J-mRvleA3NAN8NkdXmEcQLsK4/edit?usp=sharing',
+            label: '1ファイル版・Spreadsheet',
+            href: 'https://docs.google.com/spreadsheets/d/18q4P2B_DgP3ea8uS3QO8aXD79PzniasFh6NQb6Bj-4Y/edit?usp=sharing',
+          },
+          {
+            label: '2ファイル版・Spreadsheet',
+            href: 'https://docs.google.com/spreadsheets/d/1Okd9c5LNg_utk9u__snrJAaXARIurlvyFU-vpIIKgJY/edit?usp=sharing',
           },
         ],
       },
