@@ -65,7 +65,7 @@ const sections: SectionInfo[] = [
         name: '日本地図',
         source: '国土交通省 国土地理院',
         sourceUrl: '',
-        description: '使いやすく手入れされた都道府県別の日本地図',
+        description: '使いやすく手入れされた都道府県別の日本地図。',
         filterTags: ['地図'],
         downloadLinks: [
           {
@@ -180,7 +180,7 @@ const sections: SectionInfo[] = [
         name: 'Spotifyで公開されている楽曲の特徴',
         source: 'Kaggle',
         sourceUrl: 'https://www.kaggle.com/datasets/maharshipandya/-spotify-tracks-dataset/data',
-        description: 'さまざまなジャンルのSpotifyの曲とそのオーディオ特徴のデータセット',
+        description: 'さまざまなジャンルのSpotifyの曲とそのオーディオ特徴のデータセット。',
         filterTags: ['音楽'],
         downloadLinks: [
           {
@@ -188,9 +188,35 @@ const sections: SectionInfo[] = [
             href: '/datasets/5_communities/spotify/spotify.csv',
           },
         ],
+      },
+      {
+        name: 'MW - 手塚治虫',
+        source: '収集：矢崎裕一',
+        sourceUrl: '',
+        description: '漫画MWの登場人物と彼ら同士の関係性をネットワーク・データにしたものです。',
+        filterTags: ['漫画'],
+        downloadLinks: [
+          {
+            label: 'Spreadsheet',
+            href: 'https://docs.google.com/spreadsheets/d/1JFglI_jkewWwtWgeJ-J-mRvleA3NAN8NkdXmEcQLsK4/edit?usp=sharing',
+          },
+        ],
+      },
+      {
+        name: 'データ可視化の基本が全部わかる本 目次',
+        source: '翔泳社',
+        sourceUrl: 'https://www.shoeisha.co.jp/book/detail/9784798183688',
+        description: '当該書籍の目次をツリーデータにしたものです。',
+        filterTags: ['書籍'],
+        downloadLinks: [
+          {
+            label: 'Spreadsheet',
+            href: 'https://docs.google.com/spreadsheets/d/1HGQcZ-3FdO7kiY7Nc7ECZOkvh5EJFKDrvw5I9IM3a-Q/edit?usp=sharing',
+          },
+        ],
       }
     ],
-    filters: ['人事','音楽'],
+    filters: ['人事','音楽','書籍'],
   },
 ]
 
