@@ -194,7 +194,7 @@ const sections: SectionInfo[] = [
         source: '収集：矢崎裕一',
         sourceUrl: '',
         description: '漫画MWの登場人物と彼ら同士の関係性をネットワーク・データにしたものです。',
-        filterTags: ['漫画'],
+        filterTags: ['漫画','ネットワーク'],
         downloadLinks: [
           {
             label: '1ファイル版・Spreadsheet',
@@ -204,6 +204,19 @@ const sections: SectionInfo[] = [
             label: '2ファイル版・Spreadsheet',
             href: 'https://docs.google.com/spreadsheets/d/1Okd9c5LNg_utk9u__snrJAaXARIurlvyFU-vpIIKgJY/edit?usp=sharing',
           },
+        ],
+      },
+      {
+        name: '甲子園出場者の出身地',
+        source: '',
+        sourceUrl: '',
+        description: '甲子園出場校のベンチ入り20名がどの都道府県出身なのか',
+        filterTags: ['スポーツ','ネットワーク'],
+        downloadLinks: [
+          {
+            label: '1ファイル版・Spreadsheet',
+            href: 'https://docs.google.com/spreadsheets/d/1yyb7wgHJ8jBYt-RX6fvWomyEbVepPBVXBxEI-he3TTU/edit?usp=sharing',
+          }
         ],
       },
       {
