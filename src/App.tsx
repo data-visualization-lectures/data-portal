@@ -164,19 +164,6 @@ const sections: SectionInfo[] = [
     overlay: 'from-slate-950/95 via-rose-900/70 to-orange-900/40',
     dataResources: [
       {
-        name: 'IBM 従業員の離職率とパフォーマンス',
-        source: 'Kaggle',
-        sourceUrl: 'https://www.kaggle.com/datasets/pavansubhasht/ibm-hr-analytics-attrition-dataset',
-        description: 'IBMのデータサイエンティストが作成した架空のデータセット。従業員の様々な属性を一つの表データにしています。',
-        filterTags: ['人事'],
-        downloadLinks: [
-          {
-            label: 'CSV',
-            href: '/datasets/5_communities/employee/employee.csv',
-          },
-        ],
-      },
-      {
         name: 'Spotifyで公開されている楽曲の特徴',
         source: 'Kaggle',
         sourceUrl: 'https://www.kaggle.com/datasets/maharshipandya/-spotify-tracks-dataset/data',
@@ -190,7 +177,7 @@ const sections: SectionInfo[] = [
         ],
       },
       {
-        name: 'MW - 手塚治虫',
+        name: '手塚治虫 - MW',
         source: '収集：矢崎裕一',
         sourceUrl: '',
         description: '漫画MWの登場人物と彼ら同士の関係性をネットワーク・データにしたものです。',
@@ -224,16 +211,29 @@ const sections: SectionInfo[] = [
         source: '翔泳社',
         sourceUrl: 'https://www.shoeisha.co.jp/book/detail/9784798183688',
         description: '当該書籍の目次をツリーデータにしたものです。',
-        filterTags: ['書籍'],
+        filterTags: ['書籍','ツリー'],
         downloadLinks: [
           {
             label: 'Spreadsheet',
             href: 'https://docs.google.com/spreadsheets/d/1HGQcZ-3FdO7kiY7Nc7ECZOkvh5EJFKDrvw5I9IM3a-Q/edit?usp=sharing',
           },
         ],
+      },
+      {
+        name: 'IBM 従業員の離職率とパフォーマンス',
+        source: 'Kaggle',
+        sourceUrl: 'https://www.kaggle.com/datasets/pavansubhasht/ibm-hr-analytics-attrition-dataset',
+        description: 'IBMのデータサイエンティストが作成した架空のデータセット。従業員の様々な属性を一つの表データにしています。',
+        filterTags: ['人事'],
+        downloadLinks: [
+          {
+            label: 'CSV',
+            href: '/datasets/5_communities/employee/employee.csv',
+          },
+        ],
       }
     ],
-    filters: ['人事','音楽','書籍'],
+    filters: ['音楽','書籍','漫画','人事','スポーツ','ツリー','ネットワーク'],
   },
 ]
 
