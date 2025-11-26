@@ -47,6 +47,19 @@ const sections: SectionInfo[] = [
       'https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=1920&q=80',
     overlay: 'from-slate-950/95 via-slate-900/70 to-sky-900/40',
     dataResources: [
+      {
+        name: 'Gapminder',
+        source: 'Plotly',
+        sourceUrl: 'https://github.com/data-visualization-lectures/plotly-datasets?tab=readme-ov-file',
+        description: '戦後以降の長期間における国力（GDPや平均寿命）の国際比較',
+        filterTags: ['人口・社会', '経済'],
+        downloadLinks: [
+          {
+            label: 'CSV',
+            href: '/datasets/1_global/gapminder/gapminder_unfiltered.csv',
+          },
+        ],
+      }
     ],
     filters: ['人口・社会', '経済', '環境', '人間開発'],
   },
