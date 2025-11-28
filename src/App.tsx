@@ -147,9 +147,35 @@ const sections: SectionInfo[] = [
             href: 'https://docs.google.com/spreadsheets/d/1CNqgp-hWcrYe1Bg0LJwpuKzGyUwoseL8SAbsDdCsyes/edit?usp=sharing',
           }
         ],
-      }
+      },
+      {
+        name: '東京都（23区と多摩地区）地図',
+        source: '国土交通省 国土地理院',
+        sourceUrl: '',
+        description: '使いやすく手入れされた基礎自治体別の東京都（23区と多摩地区）地図。',
+        filterTags: ['地図'],
+        downloadLinks: [
+          {
+            label: 'GeoJSON',
+            href: '/datasets/3_municipalities/land/13a.geojson',
+          },
+        ],
+      },
+      {
+        name: '神奈川県地図',
+        source: '国土交通省 国土地理院',
+        sourceUrl: '',
+        description: '使いやすく手入れされた基礎自治体別の神奈川県地図。',
+        filterTags: ['地図'],
+        downloadLinks: [
+          {
+            label: 'GeoJSON',
+            href: '/datasets/3_municipalities/land/14.geojson',
+          },
+        ],
+      },
     ],
-    filters: ['住居','旅行','飲食'],
+    filters: ['住居','旅行','飲食','地図'],
   },
   {
     id: 'neighborhoods',
