@@ -345,15 +345,13 @@ const SectionNavigation = ({
         <a
           key={section.id}
           href={`#${section.id}`}
-          className={`group pointer-events-auto flex items-center gap-3 text-xs tracking-[0.3em] transition ${
-            isActive ? 'text-white' : 'text-white/50 hover:text-white/80'
-          }`}
+          className={`group pointer-events-auto flex items-center gap-3 text-xs tracking-[0.3em] transition ${isActive ? 'text-white' : 'text-white/50 hover:text-white/80'
+            }`}
         >
           <span
             aria-hidden="true"
-            className={`h-px w-10 transition-all ${
-              isActive ? 'bg-white' : 'bg-white/40 group-hover:w-12'
-            }`}
+            className={`h-px w-10 transition-all ${isActive ? 'bg-white' : 'bg-white/40 group-hover:w-12'
+              }`}
           />
           <span className="font-medium">
             {index + 1}&nbsp;/&nbsp;{section.scope}
@@ -461,9 +459,9 @@ const DataSection = ({ section }: { section: SectionInfo }) => {
       <div className="relative z-10 mx-auto flex w-full max-w-6xl flex-col gap-10 px-4 sm:px-6 lg:px-8">
         <div className="space-y-5">
           <p className="text-sm font-medium text-accent">{section.scope}</p>
-        <h2 className="font-serif text-4xl leading-tight sm:text-5xl">{section.title}</h2>
-        <p className="text-base text-white/80 sm:text-lg">{section.summary}</p>
-      </div>
+          <h2 className="font-serif text-4xl leading-tight sm:text-5xl">{section.title}</h2>
+          <p className="text-base text-white/80 sm:text-lg">{section.summary}</p>
+        </div>
 
         {section.filters && section.filters.length > 0 && (
           <div className="flex flex-wrap items-center gap-2 text-xs uppercase tracking-[0.3em] text-white/70">
@@ -475,11 +473,10 @@ const DataSection = ({ section }: { section: SectionInfo }) => {
                   type="button"
                   aria-pressed={isActive}
                   onClick={() => toggleFilter(filter)}
-                  className={`rounded-full border px-4 py-1 transition ${
-                    isActive
-                      ? 'border-white bg-white/20 text-white'
-                      : 'border-white/20 text-white/70 hover:border-white hover:text-white'
-                  }`}
+                  className={`rounded-full border px-4 py-1 transition ${isActive
+                    ? 'border-white bg-white/20 text-white'
+                    : 'border-white/20 text-white/70 hover:border-white hover:text-white'
+                    }`}
                 >
                   {filter}
                 </button>
