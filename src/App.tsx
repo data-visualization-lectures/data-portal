@@ -92,7 +92,7 @@ const sections: SectionInfo[] = [
         source: '独立行政法人 統計センター',
         sourceUrl: 'https://www.nstac.go.jp/use/literacy/ssdse/',
         description: 'データ分析のための汎用素材として、独立行政法人統計センターが作成・公開している統計データです。',
-        filterTags: ['統計','家計','社会','気候'],
+        filterTags: ['統計', '家計', '社会', '気候'],
         downloadLinks: [
           {
             label: 'SSDSE C・Spreadsheet',
@@ -105,7 +105,7 @@ const sections: SectionInfo[] = [
         ],
       }
     ],
-    filters: ['統計','家計','社会','気候','地図'],
+    filters: ['統計', '家計', '社会', '気候', '地図'],
   },
   {
     id: 'municipalities',
@@ -123,7 +123,7 @@ const sections: SectionInfo[] = [
         source: 'Get the Data | Inside Airbnb',
         sourceUrl: 'https://insideairbnb.com/get-the-data/',
         description: 'AirBnB で公開されている東京の物件リストの概要情報と指標。',
-        filterTags: ['住居','旅行'],
+        filterTags: ['住居', '旅行'],
         downloadLinks: [
           {
             label: '東京都・Dropbox',
@@ -175,7 +175,7 @@ const sections: SectionInfo[] = [
         ],
       },
     ],
-    filters: ['住居','旅行','飲食','地図'],
+    filters: ['住居', '旅行', '飲食', '地図'],
   },
   {
     id: 'neighborhoods',
@@ -220,7 +220,7 @@ const sections: SectionInfo[] = [
         source: '収集：矢崎裕一',
         sourceUrl: '',
         description: '漫画MWの登場人物と彼ら同士の関係性をネットワーク・データにしたものです。',
-        filterTags: ['漫画','ネットワーク'],
+        filterTags: ['漫画', 'ネットワーク'],
         downloadLinks: [
           {
             label: '1ファイル版・Spreadsheet',
@@ -237,7 +237,7 @@ const sections: SectionInfo[] = [
         source: '',
         sourceUrl: '',
         description: '甲子園出場校のベンチ入り20名がどの都道府県出身なのか',
-        filterTags: ['スポーツ','ネットワーク'],
+        filterTags: ['スポーツ', 'ネットワーク'],
         downloadLinks: [
           {
             label: '1ファイル版・Spreadsheet',
@@ -250,7 +250,7 @@ const sections: SectionInfo[] = [
         source: '翔泳社',
         sourceUrl: 'https://www.shoeisha.co.jp/book/detail/9784798183688',
         description: '当該書籍の目次をツリーデータにしたものです。',
-        filterTags: ['書籍','ツリー'],
+        filterTags: ['書籍', 'ツリー'],
         downloadLinks: [
           {
             label: 'Spreadsheet',
@@ -270,9 +270,35 @@ const sections: SectionInfo[] = [
             href: '/datasets/5_communities/employee/employee.csv',
           },
         ],
+      },
+      {
+        name: 'Amazonレビュー：本当の自由を手に入れる お金の大学',
+        source: 'Amazon',
+        sourceUrl: '',
+        description: '該当書籍のレビュー本文と評価についてのデータです。',
+        filterTags: ['書籍'],
+        downloadLinks: [
+          {
+            label: 'Spreadsheet',
+            href: 'https://docs.google.com/spreadsheets/d/1BngoaaBmLiYZmOP9Qep54Bo05Hs-il_b7KwkbsZBiaw/edit?usp=sharing',
+          },
+        ],
+      },
+      {
+        name: 'Amazonレビュー：漫画 バビロン大富豪の教え',
+        source: 'Amazon',
+        sourceUrl: '',
+        description: '該当書籍のレビュー本文と評価についてのデータです。',
+        filterTags: ['書籍'],
+        downloadLinks: [
+          {
+            label: 'Spreadsheet',
+            href: 'https://docs.google.com/spreadsheets/d/1iWj1gqls5wZvnyGMM4oyL_4rwSMH3_WK74jqwepjE6I/edit?usp=sharing',
+          },
+        ],
       }
     ],
-    filters: ['音楽','書籍','漫画','人事','スポーツ','ツリー','ネットワーク'],
+    filters: ['音楽', '書籍', '漫画', '人事', 'スポーツ', 'ツリー', 'ネットワーク'],
   },
 ]
 
