@@ -527,7 +527,7 @@ const App = () => {
         メインコンテンツへ移動
       </a>
 
-      <header className="fixed inset-x-0 top-0 z-40 border-b border-white/10 bg-midnight/70 backdrop-blur">
+      <header className="fixed inset-x-0 top-[var(--auth-header-height)] z-40 border-b border-white/10 bg-midnight/70 backdrop-blur">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-2 sm:px-6 lg:px-8">
           <div>
             <p className="text-xs uppercase tracking-[0.4em] text-white/60">Data Portal</p>
@@ -541,7 +541,7 @@ const App = () => {
 
       <SectionNavigation sectionsList={sections} activeId={activeSection} />
 
-      <main className="pt-16">
+      <main className="pt-[calc(var(--auth-header-height)_+_4rem)]">
         {sections.map((section) => (
           <DataSection key={section.id} section={section} />
         ))}
