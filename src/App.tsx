@@ -530,8 +530,8 @@ const App = () => {
       <header className="fixed inset-x-0 top-[var(--auth-header-height)] z-40 border-b border-white/10 bg-midnight/70 backdrop-blur">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-2 sm:px-6 lg:px-8">
           <div>
-            <p className="text-xs uppercase tracking-[0.4em] text-white/60">Data Portal</p>
-            <p className="font-serif text-xl">Japan Insight Hub</p>
+            <p className="text-xs uppercase tracking-[0.4em] text-white/60">DataViz.JP</p>
+            <p className="font-serif text-xl">データ・ポータル</p>
           </div>
           <button className="rounded-full border border-white/20 px-4 py-2 text-xs uppercase tracking-[0.3em] text-white/80 md:hidden">
             Menu
