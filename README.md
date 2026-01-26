@@ -33,6 +33,9 @@ npm run dev
 
 ブラウザで `http://localhost:5173` を開くとHMR付きの開発環境が起動します。
 
+http://localhost:5173/?auth_debug
+
+
 ## ビルド
 
 ```bash
