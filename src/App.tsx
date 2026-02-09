@@ -458,8 +458,8 @@ const DataSection = ({ section }: { section: SectionInfo }) => {
 
       <div className="relative z-10 mx-auto flex w-full max-w-6xl flex-col gap-10 px-4 sm:px-6 lg:px-8">
         <div className="space-y-5">
-          <p className="text-sm font-medium text-accent">{section.scope}</p>
-          <h2 className="font-serif text-4xl leading-tight sm:text-5xl">{section.title}</h2>
+          <p className="text-sm font-medium text-accent">{section.title}</p>
+          <h2 className="font-serif text-4xl leading-tight sm:text-5xl">{section.scope}</h2>
           <p className="text-base text-white/80 sm:text-lg">{section.summary}</p>
         </div>
 
