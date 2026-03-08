@@ -1,306 +1,6 @@
 import { useEffect, useMemo, useState } from 'react'
-
-type DataResource = {
-  name: string
-  source: string
-  sourceUrl?: string
-  description: string
-  filterTags?: string[]
-  downloadLinks: { label: string; href: string; downloadName?: string }[]
-}
-
-type SectionInfo = {
-  id: string
-  level: string
-  scope: string
-  title: string
-  summary: string
-  backgroundUrl: string
-  overlay: string
-  dataResources: DataResource[]
-  filters?: string[]
-}
-
-const sections: SectionInfo[] = [
-  {
-    id: 'cosmos',
-    level: '0段目',
-    scope: '宇宙視点',
-    title: '宇宙から俯瞰する地球の脈動',
-    summary:
-      '地球規模のダイナミクスと日本の存在を、宇宙視点から理解します。',
-    backgroundUrl:
-      'https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=1920&q=80',
-    overlay: 'from-slate-950/95 via-violet-900/70 to-indigo-900/40',
-    dataResources: [
-    ],
-    filters: ['地球観測', '気候', '宇宙天候', '衛星データ'],
-  },
-  {
-    id: 'global',
-    level: '1段目',
-    scope: '世界視点',
-    title: '世界の中での日本の位置づけ',
-    summary:
-      '主要指標から、日本が世界のなかでどの位置にいるのかを俯瞰します。',
-    backgroundUrl:
-      'https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=1920&q=80',
-    overlay: 'from-slate-950/95 via-slate-900/70 to-sky-900/40',
-    dataResources: [
-      {
-        name: 'Gapminder',
-        source: 'Plotly',
-        sourceUrl: 'https://github.com/data-visualization-lectures/plotly-datasets?tab=readme-ov-file',
-        description: '戦後以降の長期間における国力（GDPや平均寿命）の国際比較',
-        filterTags: ['人口・社会', '経済'],
-        downloadLinks: [
-          {
-            label: 'CSV',
-            href: '/datasets/1_global/gapminder/gapminder_unfiltered.csv',
-          },
-        ],
-      }
-    ],
-    filters: ['人口・社会', '経済', '環境', '人間開発'],
-  },
-  {
-    id: 'regions',
-    level: '2段目',
-    scope: '都道府県視点',
-    title: '広域自治体で俯瞰する地域ポートフォリオ',
-    summary:
-      '都道府県別のデータをもとに、地域の強みと課題を一目で比較できます。',
-    backgroundUrl:
-      'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1920&q=80',
-    overlay: 'from-slate-950/95 via-slate-900/70 to-emerald-900/40',
-    dataResources: [
-      {
-        name: '日本地図',
-        source: '国土交通省 国土地理院',
-        sourceUrl: '',
-        description: '使いやすく手入れされた都道府県別の日本地図。',
-        filterTags: ['地図'],
-        downloadLinks: [
-          {
-            label: 'GeoJSON',
-            href: '/datasets/2_regions/land/japan.geojson',
-          },
-        ],
-      },
-      {
-        name: 'SSDSE（教育用標準データセット）',
-        source: '独立行政法人 統計センター',
-        sourceUrl: 'https://www.nstac.go.jp/use/literacy/ssdse/',
-        description: 'データ分析のための汎用素材として、独立行政法人統計センターが作成・公開している統計データです。',
-        filterTags: ['統計', '家計', '社会', '気候'],
-        downloadLinks: [
-          {
-            label: 'SSDSE C・Spreadsheet',
-            href: 'https://docs.google.com/spreadsheets/d/1J1PMktKcNssBfz_W-0YfuLQdAODwevG84GvlVSpjWLw/edit?usp=sharing',
-          },
-          {
-            label: 'SSDSE E・Spreadsheet',
-            href: 'https://docs.google.com/spreadsheets/d/1qg4vJxdkOGdjI3DPwTNfdfLdqItYTFvnDy2AtNdGUqU/edit?usp=sharing',
-          },
-        ],
-      }
-    ],
-    filters: ['統計', '家計', '社会', '気候', '地図'],
-  },
-  {
-    id: 'municipalities',
-    level: '3段目',
-    scope: '市区町村視点',
-    title: '基礎自治体から見る暮らしの構造',
-    summary:
-      '市区町村別のデータをもとに、地域の強みや課題などを把握できます。',
-    backgroundUrl:
-      'https://images.unsplash.com/photo-1489515217757-5fd1be406fef?auto=format&fit=crop&w=1920&q=80',
-    overlay: 'from-slate-950/95 via-indigo-900/70 to-indigo-900/30',
-    dataResources: [
-      {
-        name: 'Airbnb 物件リスト',
-        source: 'Get the Data | Inside Airbnb',
-        sourceUrl: 'https://insideairbnb.com/get-the-data/',
-        description: 'AirBnB で公開されている東京の物件リストの概要情報と指標。',
-        filterTags: ['住居', '旅行'],
-        downloadLinks: [
-          {
-            label: '東京都・Dropbox',
-            href: 'https://www.dropbox.com/scl/fo/1ki93eloc09vzk64froln/AAI1vK_v5gfdONf-6ZIPqj8?rlkey=bbh0qljzvpl060vx53sxc5fnv&st=k94o51nz&dl=0',
-          },
-        ],
-      },
-      {
-        name: 'Starbucks 店舗リスト',
-        source: '店舗検索｜スターバックス コーヒー ジャパン',
-        sourceUrl: 'https://store.starbucks.co.jp/',
-        description: '公式サイトで公開されている東京都における店舗情報（緯度経度は含みません）。',
-        filterTags: ['飲食'],
-        downloadLinks: [
-          {
-            label: '特別区23区・Spreadsheet',
-            href: 'https://docs.google.com/spreadsheets/d/1braD7p5SRfQKxLTOOKmTpy7-sCcdB7naFkrjyon35Fs/edit?usp=sharing',
-          },
-          {
-            label: '多摩地区・Spreadsheet',
-            href: 'https://docs.google.com/spreadsheets/d/1CNqgp-hWcrYe1Bg0LJwpuKzGyUwoseL8SAbsDdCsyes/edit?usp=sharing',
-          }
-        ],
-      },
-      {
-        name: '東京都（23区と多摩地区）地図',
-        source: '国土交通省 国土地理院',
-        sourceUrl: '',
-        description: '使いやすく手入れされた基礎自治体別の東京都（23区と多摩地区）地図。',
-        filterTags: ['地図'],
-        downloadLinks: [
-          {
-            label: 'GeoJSON',
-            href: '/datasets/3_municipalities/land/13a.geojson',
-          },
-        ],
-      },
-      {
-        name: '神奈川県地図',
-        source: '国土交通省 国土地理院',
-        sourceUrl: '',
-        description: '使いやすく手入れされた基礎自治体別の神奈川県地図。',
-        filterTags: ['地図'],
-        downloadLinks: [
-          {
-            label: 'GeoJSON',
-            href: '/datasets/3_municipalities/land/14.geojson',
-          },
-        ],
-      },
-    ],
-    filters: ['住居', '旅行', '飲食', '地図'],
-  },
-  {
-    id: 'neighborhoods',
-    level: '4段目',
-    scope: '町丁視点',
-    title: '町丁レベルで観測する都市の鼓動',
-    summary:
-      '身の回りの小さな区域の特性を理解しよう。',
-    backgroundUrl:
-      'https://images.unsplash.com/photo-1689075326462-581d7705c0ef?auto=format&fit=crop&w=1920&q=80&blend=0f172a&blend-mode=multiply',
-    overlay: 'from-slate-900/70 via-amber-700/30 to-white/10',
-    dataResources: [
-    ],
-    filters: ['人口密度', 'モビリティ', '防災', '都市計画'],
-  },
-  {
-    id: 'communities',
-    level: '5段目',
-    scope: 'コミュニティ視点',
-    title: 'ローカルアクションを束ねる知',
-    summary:
-      '地域コミュニティや民間プロジェクトが公開するオープンデータを集め、草の根の取り組みやニーズを把握します。',
-    backgroundUrl:
-      'https://images.unsplash.com/photo-1492724441997-5dc865305da7?auto=format&fit=crop&w=1920&q=80',
-    overlay: 'from-slate-950/95 via-rose-900/70 to-orange-900/40',
-    dataResources: [
-      {
-        name: 'Spotifyで公開されている楽曲の特徴',
-        source: 'Kaggle',
-        sourceUrl: 'https://www.kaggle.com/datasets/maharshipandya/-spotify-tracks-dataset/data',
-        description: 'さまざまなジャンルのSpotifyの曲とそのオーディオ特徴のデータセット。',
-        filterTags: ['音楽'],
-        downloadLinks: [
-          {
-            label: 'CSV',
-            href: '/datasets/5_communities/spotify/spotify.csv',
-          },
-        ],
-      },
-      {
-        name: '手塚治虫 - MW',
-        source: '収集：矢崎裕一',
-        sourceUrl: '',
-        description: '漫画MWの登場人物と彼ら同士の関係性をネットワーク・データにしたものです。',
-        filterTags: ['漫画', 'ネットワーク'],
-        downloadLinks: [
-          {
-            label: '1ファイル版・Spreadsheet',
-            href: 'https://docs.google.com/spreadsheets/d/18q4P2B_DgP3ea8uS3QO8aXD79PzniasFh6NQb6Bj-4Y/edit?usp=sharing',
-          },
-          {
-            label: '2ファイル版・Spreadsheet',
-            href: 'https://docs.google.com/spreadsheets/d/1Okd9c5LNg_utk9u__snrJAaXARIurlvyFU-vpIIKgJY/edit?usp=sharing',
-          },
-        ],
-      },
-      {
-        name: '甲子園出場者の出身地',
-        source: '',
-        sourceUrl: '',
-        description: '甲子園出場校のベンチ入り20名がどの都道府県出身なのか',
-        filterTags: ['スポーツ', 'ネットワーク'],
-        downloadLinks: [
-          {
-            label: '1ファイル版・Spreadsheet',
-            href: 'https://docs.google.com/spreadsheets/d/1yyb7wgHJ8jBYt-RX6fvWomyEbVepPBVXBxEI-he3TTU/edit?usp=sharing',
-          }
-        ],
-      },
-      {
-        name: 'データ可視化の基本が全部わかる本 目次',
-        source: '翔泳社',
-        sourceUrl: 'https://www.shoeisha.co.jp/book/detail/9784798183688',
-        description: '当該書籍の目次をツリーデータにしたものです。',
-        filterTags: ['書籍', 'ツリー'],
-        downloadLinks: [
-          {
-            label: 'Spreadsheet',
-            href: 'https://docs.google.com/spreadsheets/d/1HGQcZ-3FdO7kiY7Nc7ECZOkvh5EJFKDrvw5I9IM3a-Q/edit?usp=sharing',
-          },
-        ],
-      },
-      {
-        name: 'IBM 従業員の離職率とパフォーマンス',
-        source: 'Kaggle',
-        sourceUrl: 'https://www.kaggle.com/datasets/pavansubhasht/ibm-hr-analytics-attrition-dataset',
-        description: 'IBMのデータサイエンティストが作成した架空のデータセット。従業員の様々な属性を一つの表データにしています。',
-        filterTags: ['人事'],
-        downloadLinks: [
-          {
-            label: 'CSV',
-            href: '/datasets/5_communities/employee/employee.csv',
-          },
-        ],
-      },
-      {
-        name: 'Amazonレビュー：本当の自由を手に入れる お金の大学',
-        source: 'Amazon',
-        sourceUrl: '',
-        description: '該当書籍のレビュー本文と評価についてのデータです。',
-        filterTags: ['書籍'],
-        downloadLinks: [
-          {
-            label: 'Spreadsheet',
-            href: 'https://docs.google.com/spreadsheets/d/1BngoaaBmLiYZmOP9Qep54Bo05Hs-il_b7KwkbsZBiaw/edit?usp=sharing',
-          },
-        ],
-      },
-      {
-        name: 'Amazonレビュー：漫画 バビロン大富豪の教え',
-        source: 'Amazon',
-        sourceUrl: '',
-        description: '該当書籍のレビュー本文と評価についてのデータです。',
-        filterTags: ['書籍'],
-        downloadLinks: [
-          {
-            label: 'Spreadsheet',
-            href: 'https://docs.google.com/spreadsheets/d/1iWj1gqls5wZvnyGMM4oyL_4rwSMH3_WK74jqwepjE6I/edit?usp=sharing',
-          },
-        ],
-      }
-    ],
-    filters: ['音楽', '書籍', '漫画', '人事', 'スポーツ', 'ツリー', 'ネットワーク'],
-  },
-]
+import type { DataResource, SectionInfo } from './i18n/types'
+import { useLanguage } from './i18n/context'
 
 const useActiveSection = (ids: string[]) => {
   const [activeId, setActiveId] = useState(ids[0])
@@ -334,33 +34,37 @@ const SectionNavigation = ({
 }: {
   sectionsList: SectionInfo[]
   activeId: string
-}) => (
-  <nav
-    aria-label="セクション内移動"
-    className="pointer-events-none fixed right-6 top-1/2 z-30 hidden -translate-y-1/2 flex-col gap-3 lg:flex"
-  >
-    {sectionsList.map((section, index) => {
-      const isActive = activeId === section.id
-      return (
-        <a
-          key={section.id}
-          href={`#${section.id}`}
-          className={`group pointer-events-auto flex items-center gap-3 text-xs tracking-[0.3em] transition ${isActive ? 'text-white' : 'text-white/50 hover:text-white/80'
-            }`}
-        >
-          <span
-            aria-hidden="true"
-            className={`h-px w-10 transition-all ${isActive ? 'bg-white' : 'bg-white/40 group-hover:w-12'
+}) => {
+  const { t } = useLanguage()
+
+  return (
+    <nav
+      aria-label={t.sectionNavLabel}
+      className="pointer-events-none fixed right-6 top-1/2 z-30 hidden -translate-y-1/2 flex-col gap-3 lg:flex"
+    >
+      {sectionsList.map((section, index) => {
+        const isActive = activeId === section.id
+        return (
+          <a
+            key={section.id}
+            href={`#${section.id}`}
+            className={`group pointer-events-auto flex items-center gap-3 text-xs tracking-[0.3em] transition ${isActive ? 'text-white' : 'text-white/50 hover:text-white/80'
               }`}
-          />
-          <span className="font-medium">
-            {index + 1}&nbsp;/&nbsp;{section.scope}
-          </span>
-        </a>
-      )
-    })}
-  </nav>
-)
+          >
+            <span
+              aria-hidden="true"
+              className={`h-px w-10 transition-all ${isActive ? 'bg-white' : 'bg-white/40 group-hover:w-12'
+                }`}
+            />
+            <span className="font-medium">
+              {index + 1}&nbsp;/&nbsp;{section.scope}
+            </span>
+          </a>
+        )
+      })}
+    </nav>
+  )
+}
 
 const MobileStepper = ({ sectionsList }: { sectionsList: SectionInfo[] }) => (
   <div className="fixed bottom-6 left-1/2 z-30 flex -translate-x-1/2 gap-2 rounded-full border border-white/10 bg-white/10 px-4 py-2 text-[0.65rem] uppercase tracking-[0.3em] backdrop-blur lg:hidden">
@@ -373,6 +77,7 @@ const MobileStepper = ({ sectionsList }: { sectionsList: SectionInfo[] }) => (
 )
 
 const DataResourceCard = ({ resource }: { resource: DataResource }) => {
+  const { t } = useLanguage()
   const downloadLinks = resource.downloadLinks ?? []
 
   return (
@@ -386,7 +91,7 @@ const DataResourceCard = ({ resource }: { resource: DataResource }) => {
       </div>
       <p className="font-serif text-2xl font-semibold text-white">{resource.name}</p>
       <p className="text-sm text-white/60">
-        提供:{' '}
+        {t.sourceLabel}{' '}
         <a
           href={resource.sourceUrl ?? downloadLinks[0]?.href ?? '#'}
           target="_blank"
@@ -419,6 +124,7 @@ const DataResourceCard = ({ resource }: { resource: DataResource }) => {
 }
 
 const DataSection = ({ section }: { section: SectionInfo }) => {
+  const { t } = useLanguage()
   const [selectedFilters, setSelectedFilters] = useState<string[]>([])
 
   const toggleFilter = (filter: string) => {
@@ -488,7 +194,7 @@ const DataSection = ({ section }: { section: SectionInfo }) => {
                 onClick={clearFilters}
                 className="rounded-full border border-white/0 px-3 py-1 text-[0.6rem] tracking-[0.4em] text-white/60 underline-offset-4 hover:text-white"
               >
-                クリア
+                {t.clearFilters}
               </button>
             )}
           </div>
@@ -497,7 +203,7 @@ const DataSection = ({ section }: { section: SectionInfo }) => {
         <div className="grid gap-4 md:grid-cols-2">
           {section.dataResources.length === 0 ? (
             <p className="col-span-full rounded-2xl border border-dashed border-white/20 bg-white/5 p-6 text-sm text-white/70">
-              この粒度に紐づくデータソースはまだ登録されていません。近日中に公開予定です。
+              {t.emptyStateNoData}
             </p>
           ) : filteredResources.length ? (
             filteredResources.map((resource) => (
@@ -505,7 +211,7 @@ const DataSection = ({ section }: { section: SectionInfo }) => {
             ))
           ) : (
             <p className="col-span-full rounded-2xl border border-dashed border-white/20 bg-white/5 p-6 text-sm text-white/70">
-              選択されたフィルターに一致するデータセットがありません。条件を緩めてください。
+              {t.emptyStateNoMatch}
             </p>
           )}
         </div>
@@ -515,8 +221,14 @@ const DataSection = ({ section }: { section: SectionInfo }) => {
 }
 
 const App = () => {
-  const sectionIds = useMemo(() => sections.map((section) => section.id), [])
+  const { sections, t, locale, setLocale } = useLanguage()
+  const sectionIds = useMemo(() => sections.map((section) => section.id), [sections])
   const activeSection = useActiveSection(sectionIds)
+
+  useEffect(() => {
+    document.title = `${t.siteSubtitle} | DataViz.JP`
+    document.documentElement.lang = locale
+  }, [locale, t.siteSubtitle])
 
   return (
     <div className="relative overflow-x-hidden bg-midnight text-white">
@@ -524,18 +236,27 @@ const App = () => {
         href="#global"
         className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded focus:bg-white focus:px-4 focus:py-2 focus:text-slate-900"
       >
-        メインコンテンツへ移動
+        {t.skipToContent}
       </a>
 
       <header className="fixed inset-x-0 top-[var(--auth-header-height)] z-40 border-b border-white/10 bg-midnight/70 backdrop-blur">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-2 sm:px-6 lg:px-8">
           <div>
             <p className="text-xs uppercase tracking-[0.4em] text-white/60">DataViz.JP</p>
-            <p className="font-serif text-xl">データ・ポータル</p>
+            <p className="font-serif text-xl">{t.siteSubtitle}</p>
           </div>
-          <button className="rounded-full border border-white/20 px-4 py-2 text-xs uppercase tracking-[0.3em] text-white/80 md:hidden">
-            Menu
-          </button>
+          <div className="flex items-center gap-3">
+            <button
+              type="button"
+              onClick={() => setLocale(locale === 'ja' ? 'en' : 'ja')}
+              className="rounded-full border border-white/20 px-4 py-2 text-xs uppercase tracking-[0.3em] text-white/80 transition hover:border-white hover:text-white"
+            >
+              {locale === 'ja' ? 'English' : '日本語'}
+            </button>
+            <button className="rounded-full border border-white/20 px-4 py-2 text-xs uppercase tracking-[0.3em] text-white/80 md:hidden">
+              Menu
+            </button>
+          </div>
         </div>
       </header>
 
@@ -548,7 +269,7 @@ const App = () => {
       </main>
 
       <footer id="footer" className="border-t border-white/10 bg-slate-950/80 py-10 text-center text-sm text-white/50">
-        <p>© <a href="https://visualizing.jp/" target="_blank">Visualizing.JP</a> | <a href="https://www.dataviz.jp/" target="_blank">Dataviz.JP</a></p>
+        <p>&copy; <a href="https://visualizing.jp/" target="_blank">Visualizing.JP</a> | <a href="https://www.dataviz.jp/" target="_blank">Dataviz.JP</a></p>
       </footer>
 
       <MobileStepper sectionsList={sections} />
