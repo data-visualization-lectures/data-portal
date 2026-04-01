@@ -76,11 +76,11 @@ export const sections: SectionInfo[] = [
         downloadLinks: [
           {
             label: 'SSDSE C・Spreadsheet',
-            href: 'https://docs.google.com/spreadsheets/d/1J1PMktKcNssBfz_W-0YfuLQdAODwevG84GvlVSpjWLw/edit?usp=sharing',
+            href: 'https://docs.google.com/spreadsheets/d/17GxwwUxYJWrbX_Lsx8zoN2hPuImjmwFfcDo5hBnrRyk/edit?usp=sharing',
           },
           {
             label: 'SSDSE E・Spreadsheet',
-            href: 'https://docs.google.com/spreadsheets/d/1qg4vJxdkOGdjI3DPwTNfdfLdqItYTFvnDy2AtNdGUqU/edit?usp=sharing',
+            href: 'https://docs.google.com/spreadsheets/d/1yQN9UEITh9prtWi-gMZJbf7j30ExUXzGTTPncKjVlMc/edit?usp=sharing',
           },
         ],
       },
@@ -99,20 +99,6 @@ export const sections: SectionInfo[] = [
     overlay: 'from-slate-950/95 via-indigo-900/70 to-indigo-900/30',
     dataResources: [
       {
-        name: 'Airbnb 物件リスト',
-        source: 'Get the Data | Inside Airbnb',
-        sourceUrl: 'https://insideairbnb.com/get-the-data/',
-        description:
-          'AirBnB で公開されている東京の物件リストの概要情報と指標。',
-        filterTags: ['住居', '旅行'],
-        downloadLinks: [
-          {
-            label: '東京都・Dropbox',
-            href: 'https://www.dropbox.com/scl/fo/1ki93eloc09vzk64froln/AAI1vK_v5gfdONf-6ZIPqj8?rlkey=bbh0qljzvpl060vx53sxc5fnv&st=k94o51nz&dl=0',
-          },
-        ],
-      },
-      {
         name: 'Starbucks 店舗リスト',
         source: '店舗検索｜スターバックス コーヒー ジャパン',
         sourceUrl: 'https://store.starbucks.co.jp/',
@@ -122,38 +108,11 @@ export const sections: SectionInfo[] = [
         downloadLinks: [
           {
             label: '特別区23区・Spreadsheet',
-            href: 'https://docs.google.com/spreadsheets/d/1braD7p5SRfQKxLTOOKmTpy7-sCcdB7naFkrjyon35Fs/edit?usp=sharing',
+            href: 'https://docs.google.com/spreadsheets/d/1qILkYLhNJ6Hzu8uO-MTKJndNAkij6pf9eqmfGUnu3Pk/edit?usp=sharing',
           },
           {
             label: '多摩地区・Spreadsheet',
-            href: 'https://docs.google.com/spreadsheets/d/1CNqgp-hWcrYe1Bg0LJwpuKzGyUwoseL8SAbsDdCsyes/edit?usp=sharing',
-          },
-        ],
-      },
-      {
-        name: '東京都（23区と多摩地区）地図',
-        source: '国土交通省 国土地理院',
-        sourceUrl: '',
-        description:
-          '使いやすく手入れされた基礎自治体別の東京都（23区と多摩地区）地図。',
-        filterTags: ['地図'],
-        downloadLinks: [
-          {
-            label: 'GeoJSON',
-            href: '/datasets/3_municipalities/land/13a.geojson',
-          },
-        ],
-      },
-      {
-        name: '神奈川県地図',
-        source: '国土交通省 国土地理院',
-        sourceUrl: '',
-        description: '使いやすく手入れされた基礎自治体別の神奈川県地図。',
-        filterTags: ['地図'],
-        downloadLinks: [
-          {
-            label: 'GeoJSON',
-            href: '/datasets/3_municipalities/land/14.geojson',
+            href: 'https://docs.google.com/spreadsheets/d/1UfyW3cGp9eAfSpNJPtsGxxxSYb95_-o4Z7M_gHIxn54/edit?usp=sharing',
           },
         ],
       },
@@ -208,11 +167,11 @@ export const sections: SectionInfo[] = [
         downloadLinks: [
           {
             label: '1ファイル版・Spreadsheet',
-            href: 'https://docs.google.com/spreadsheets/d/18q4P2B_DgP3ea8uS3QO8aXD79PzniasFh6NQb6Bj-4Y/edit?usp=sharing',
+            href: 'https://docs.google.com/spreadsheets/d/1TNn_HiKVKuVwIojqvRF6u1_uZD67pm-fGJtNsLAwb2Q/edit?usp=sharing',
           },
           {
             label: '2ファイル版・Spreadsheet',
-            href: 'https://docs.google.com/spreadsheets/d/1Okd9c5LNg_utk9u__snrJAaXARIurlvyFU-vpIIKgJY/edit?usp=sharing',
+            href: 'https://docs.google.com/spreadsheets/d/15Z8Y9TIe4Lx17U_IOYp0UfWrKevzz-3CiospEBIE3WU/edit?usp=sharing',
           },
         ],
       },
@@ -225,20 +184,7 @@ export const sections: SectionInfo[] = [
         downloadLinks: [
           {
             label: '1ファイル版・Spreadsheet',
-            href: 'https://docs.google.com/spreadsheets/d/1yyb7wgHJ8jBYt-RX6fvWomyEbVepPBVXBxEI-he3TTU/edit?usp=sharing',
-          },
-        ],
-      },
-      {
-        name: 'データ可視化の基本が全部わかる本 目次',
-        source: '翔泳社',
-        sourceUrl: 'https://www.shoeisha.co.jp/book/detail/9784798183688',
-        description: '当該書籍の目次をツリーデータにしたものです。',
-        filterTags: ['書籍', 'ツリー'],
-        downloadLinks: [
-          {
-            label: 'Spreadsheet',
-            href: 'https://docs.google.com/spreadsheets/d/1HGQcZ-3FdO7kiY7Nc7ECZOkvh5EJFKDrvw5I9IM3a-Q/edit?usp=sharing',
+            href: 'https://docs.google.com/spreadsheets/d/1HdfkDOGBovb-YT1kOxqdu5mFr3KGKXbreD0c8HyjxOU/edit?usp=sharing',
           },
         ],
       },
@@ -254,32 +200,6 @@ export const sections: SectionInfo[] = [
           {
             label: 'CSV',
             href: '/datasets/5_communities/employee/employee.csv',
-          },
-        ],
-      },
-      {
-        name: 'Amazonレビュー：本当の自由を手に入れる お金の大学',
-        source: 'Amazon',
-        sourceUrl: '',
-        description: '該当書籍のレビュー本文と評価についてのデータです。',
-        filterTags: ['書籍'],
-        downloadLinks: [
-          {
-            label: 'Spreadsheet',
-            href: 'https://docs.google.com/spreadsheets/d/1BngoaaBmLiYZmOP9Qep54Bo05Hs-il_b7KwkbsZBiaw/edit?usp=sharing',
-          },
-        ],
-      },
-      {
-        name: 'Amazonレビュー：漫画 バビロン大富豪の教え',
-        source: 'Amazon',
-        sourceUrl: '',
-        description: '該当書籍のレビュー本文と評価についてのデータです。',
-        filterTags: ['書籍'],
-        downloadLinks: [
-          {
-            label: 'Spreadsheet',
-            href: 'https://docs.google.com/spreadsheets/d/1iWj1gqls5wZvnyGMM4oyL_4rwSMH3_WK74jqwepjE6I/edit?usp=sharing',
           },
         ],
       },

@@ -78,11 +78,11 @@ export const sections: SectionInfo[] = [
         downloadLinks: [
           {
             label: 'SSDSE C - Spreadsheet',
-            href: 'https://docs.google.com/spreadsheets/d/1J1PMktKcNssBfz_W-0YfuLQdAODwevG84GvlVSpjWLw/edit?usp=sharing',
+            href: 'https://docs.google.com/spreadsheets/d/17GxwwUxYJWrbX_Lsx8zoN2hPuImjmwFfcDo5hBnrRyk/edit?usp=sharing',
           },
           {
             label: 'SSDSE E - Spreadsheet',
-            href: 'https://docs.google.com/spreadsheets/d/1qg4vJxdkOGdjI3DPwTNfdfLdqItYTFvnDy2AtNdGUqU/edit?usp=sharing',
+            href: 'https://docs.google.com/spreadsheets/d/1yQN9UEITh9prtWi-gMZJbf7j30ExUXzGTTPncKjVlMc/edit?usp=sharing',
           },
         ],
       },
@@ -101,20 +101,6 @@ export const sections: SectionInfo[] = [
     overlay: 'from-slate-950/95 via-indigo-900/70 to-indigo-900/30',
     dataResources: [
       {
-        name: 'Airbnb Listings',
-        source: 'Get the Data | Inside Airbnb',
-        sourceUrl: 'https://insideairbnb.com/get-the-data/',
-        description:
-          'Summary information and metrics for Airbnb listings in Tokyo.',
-        filterTags: ['Housing', 'Travel'],
-        downloadLinks: [
-          {
-            label: 'Tokyo - Dropbox',
-            href: 'https://www.dropbox.com/scl/fo/1ki93eloc09vzk64froln/AAI1vK_v5gfdONf-6ZIPqj8?rlkey=bbh0qljzvpl060vx53sxc5fnv&st=k94o51nz&dl=0',
-          },
-        ],
-      },
-      {
         name: 'Starbucks Store List',
         source: 'Store Locator | Starbucks Coffee Japan',
         sourceUrl: 'https://store.starbucks.co.jp/',
@@ -124,42 +110,14 @@ export const sections: SectionInfo[] = [
         downloadLinks: [
           {
             label: '23 Special Wards - Spreadsheet',
-            href: 'https://docs.google.com/spreadsheets/d/1braD7p5SRfQKxLTOOKmTpy7-sCcdB7naFkrjyon35Fs/edit?usp=sharing',
+            href: 'https://docs.google.com/spreadsheets/d/1qILkYLhNJ6Hzu8uO-MTKJndNAkij6pf9eqmfGUnu3Pk/edit?usp=sharing',
           },
           {
             label: 'Tama Area - Spreadsheet',
-            href: 'https://docs.google.com/spreadsheets/d/1CNqgp-hWcrYe1Bg0LJwpuKzGyUwoseL8SAbsDdCsyes/edit?usp=sharing',
+            href: 'https://docs.google.com/spreadsheets/d/1UfyW3cGp9eAfSpNJPtsGxxxSYb95_-o4Z7M_gHIxn54/edit?usp=sharing',
           },
         ],
-      },
-      {
-        name: 'Tokyo (23 Wards & Tama) Map',
-        source: 'Geospatial Information Authority of Japan (GSI)',
-        sourceUrl: '',
-        description:
-          'A well-maintained map of Tokyo (23 Wards & Tama) by municipality.',
-        filterTags: ['Map'],
-        downloadLinks: [
-          {
-            label: 'GeoJSON',
-            href: '/datasets/3_municipalities/land/13a.geojson',
-          },
-        ],
-      },
-      {
-        name: 'Kanagawa Prefecture Map',
-        source: 'Geospatial Information Authority of Japan (GSI)',
-        sourceUrl: '',
-        description:
-          'A well-maintained map of Kanagawa Prefecture by municipality.',
-        filterTags: ['Map'],
-        downloadLinks: [
-          {
-            label: 'GeoJSON',
-            href: '/datasets/3_municipalities/land/14.geojson',
-          },
-        ],
-      },
+      }
     ],
     filters: ['Housing', 'Travel', 'Food & Drink', 'Map'],
   },
@@ -212,11 +170,11 @@ export const sections: SectionInfo[] = [
         downloadLinks: [
           {
             label: 'Single File - Spreadsheet',
-            href: 'https://docs.google.com/spreadsheets/d/18q4P2B_DgP3ea8uS3QO8aXD79PzniasFh6NQb6Bj-4Y/edit?usp=sharing',
+            href: 'https://docs.google.com/spreadsheets/d/1TNn_HiKVKuVwIojqvRF6u1_uZD67pm-fGJtNsLAwb2Q/edit?usp=sharing',
           },
           {
             label: 'Two Files - Spreadsheet',
-            href: 'https://docs.google.com/spreadsheets/d/1Okd9c5LNg_utk9u__snrJAaXARIurlvyFU-vpIIKgJY/edit?usp=sharing',
+            href: 'https://docs.google.com/spreadsheets/d/15Z8Y9TIe4Lx17U_IOYp0UfWrKevzz-3CiospEBIE3WU/edit?usp=sharing',
           },
         ],
       },
@@ -230,21 +188,7 @@ export const sections: SectionInfo[] = [
         downloadLinks: [
           {
             label: 'Single File - Spreadsheet',
-            href: 'https://docs.google.com/spreadsheets/d/1yyb7wgHJ8jBYt-RX6fvWomyEbVepPBVXBxEI-he3TTU/edit?usp=sharing',
-          },
-        ],
-      },
-      {
-        name: 'The Complete Guide to Data Visualization - Table of Contents',
-        source: 'Shoeisha',
-        sourceUrl: 'https://www.shoeisha.co.jp/book/detail/9784798183688',
-        description:
-          'The table of contents of this book structured as tree data.',
-        filterTags: ['Books', 'Tree'],
-        downloadLinks: [
-          {
-            label: 'Spreadsheet',
-            href: 'https://docs.google.com/spreadsheets/d/1HGQcZ-3FdO7kiY7Nc7ECZOkvh5EJFKDrvw5I9IM3a-Q/edit?usp=sharing',
+            href: 'https://docs.google.com/spreadsheets/d/1HdfkDOGBovb-YT1kOxqdu5mFr3KGKXbreD0c8HyjxOU/edit?usp=sharing',
           },
         ],
       },
@@ -260,34 +204,6 @@ export const sections: SectionInfo[] = [
           {
             label: 'CSV',
             href: '/datasets/5_communities/employee/employee.csv',
-          },
-        ],
-      },
-      {
-        name: 'Amazon Reviews: The University of Money',
-        source: 'Amazon',
-        sourceUrl: '',
-        description:
-          'Review text and ratings data for this book.',
-        filterTags: ['Books'],
-        downloadLinks: [
-          {
-            label: 'Spreadsheet',
-            href: 'https://docs.google.com/spreadsheets/d/1BngoaaBmLiYZmOP9Qep54Bo05Hs-il_b7KwkbsZBiaw/edit?usp=sharing',
-          },
-        ],
-      },
-      {
-        name: 'Amazon Reviews: The Richest Man in Babylon (Manga)',
-        source: 'Amazon',
-        sourceUrl: '',
-        description:
-          'Review text and ratings data for this book.',
-        filterTags: ['Books'],
-        downloadLinks: [
-          {
-            label: 'Spreadsheet',
-            href: 'https://docs.google.com/spreadsheets/d/1iWj1gqls5wZvnyGMM4oyL_4rwSMH3_WK74jqwepjE6I/edit?usp=sharing',
           },
         ],
       },
