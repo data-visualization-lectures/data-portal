@@ -24,23 +24,7 @@ export const sections: SectionInfo[] = [
     backgroundUrl:
       'https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=1920&q=80',
     overlay: 'from-slate-950/95 via-slate-900/70 to-sky-900/40',
-    dataResources: [
-      {
-        name: 'Gapminder',
-        source: 'Plotly',
-        sourceUrl:
-          'https://github.com/data-visualization-lectures/plotly-datasets?tab=readme-ov-file',
-        description:
-          'International comparison of national power (GDP, life expectancy) over the long term since the postwar era.',
-        filterTags: ['Population & Society', 'Economy'],
-        downloadLinks: [
-          {
-            label: 'CSV',
-            href: '/datasets/1_global/gapminder/gapminder_unfiltered.csv',
-          },
-        ],
-      },
-    ],
+    dataResources: [],
     filters: ['Population & Society', 'Economy', 'Environment', 'Human Development'],
   },
   {
@@ -68,24 +52,6 @@ export const sections: SectionInfo[] = [
           },
         ],
       },
-      {
-        name: 'SSDSE (Standard Statistical Dataset for Education)',
-        source: 'National Statistics Center',
-        sourceUrl: 'https://www.nstac.go.jp/use/literacy/ssdse/',
-        description:
-          'Statistical data created and published by the National Statistics Center as general-purpose material for data analysis.',
-        filterTags: ['Statistics', 'Household', 'Society', 'Climate'],
-        downloadLinks: [
-          {
-            label: 'SSDSE C - Spreadsheet',
-            href: 'https://docs.google.com/spreadsheets/d/17GxwwUxYJWrbX_Lsx8zoN2hPuImjmwFfcDo5hBnrRyk/edit?usp=sharing',
-          },
-          {
-            label: 'SSDSE E - Spreadsheet',
-            href: 'https://docs.google.com/spreadsheets/d/1yQN9UEITh9prtWi-gMZJbf7j30ExUXzGTTPncKjVlMc/edit?usp=sharing',
-          },
-        ],
-      },
     ],
     filters: ['Statistics', 'Household', 'Society', 'Climate', 'Map'],
   },
@@ -99,26 +65,7 @@ export const sections: SectionInfo[] = [
     backgroundUrl:
       'https://images.unsplash.com/photo-1489515217757-5fd1be406fef?auto=format&fit=crop&w=1920&q=80',
     overlay: 'from-slate-950/95 via-indigo-900/70 to-indigo-900/30',
-    dataResources: [
-      {
-        name: 'Starbucks Store List',
-        source: 'Store Locator | Starbucks Coffee Japan',
-        sourceUrl: 'https://store.starbucks.co.jp/',
-        description:
-          'Store information in Tokyo published on the official website (coordinates not included).',
-        filterTags: ['Food & Drink'],
-        downloadLinks: [
-          {
-            label: '23 Special Wards - Spreadsheet',
-            href: 'https://docs.google.com/spreadsheets/d/1qILkYLhNJ6Hzu8uO-MTKJndNAkij6pf9eqmfGUnu3Pk/edit?usp=sharing',
-          },
-          {
-            label: 'Tama Area - Spreadsheet',
-            href: 'https://docs.google.com/spreadsheets/d/1UfyW3cGp9eAfSpNJPtsGxxxSYb95_-o4Z7M_gHIxn54/edit?usp=sharing',
-          },
-        ],
-      }
-    ],
+    dataResources: [],
     filters: ['Housing', 'Travel', 'Food & Drink', 'Map'],
   },
   {
@@ -175,35 +122,6 @@ export const sections: SectionInfo[] = [
           {
             label: 'Two Files - Spreadsheet',
             href: 'https://docs.google.com/spreadsheets/d/15Z8Y9TIe4Lx17U_IOYp0UfWrKevzz-3CiospEBIE3WU/edit?usp=sharing',
-          },
-        ],
-      },
-      {
-        name: 'Koshien Players\' Hometowns',
-        source: '',
-        sourceUrl: '',
-        description:
-          'Where the 20 bench players of Koshien tournament teams come from by prefecture.',
-        filterTags: ['Sports', 'Network'],
-        downloadLinks: [
-          {
-            label: 'Single File - Spreadsheet',
-            href: 'https://docs.google.com/spreadsheets/d/1HdfkDOGBovb-YT1kOxqdu5mFr3KGKXbreD0c8HyjxOU/edit?usp=sharing',
-          },
-        ],
-      },
-      {
-        name: 'IBM Employee Attrition & Performance',
-        source: 'Kaggle',
-        sourceUrl:
-          'https://www.kaggle.com/datasets/pavansubhasht/ibm-hr-analytics-attrition-dataset',
-        description:
-          'A fictional dataset created by IBM data scientists. Various employee attributes consolidated in a single table.',
-        filterTags: ['HR'],
-        downloadLinks: [
-          {
-            label: 'CSV',
-            href: '/datasets/5_communities/employee/employee.csv',
           },
         ],
       },

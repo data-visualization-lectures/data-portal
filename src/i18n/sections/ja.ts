@@ -24,22 +24,7 @@ export const sections: SectionInfo[] = [
     backgroundUrl:
       'https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=1920&q=80',
     overlay: 'from-slate-950/95 via-slate-900/70 to-sky-900/40',
-    dataResources: [
-      {
-        name: 'Gapminder',
-        source: 'Plotly',
-        sourceUrl:
-          'https://github.com/data-visualization-lectures/plotly-datasets?tab=readme-ov-file',
-        description: '戦後以降の長期間における国力（GDPや平均寿命）の国際比較',
-        filterTags: ['人口・社会', '経済'],
-        downloadLinks: [
-          {
-            label: 'CSV',
-            href: '/datasets/1_global/gapminder/gapminder_unfiltered.csv',
-          },
-        ],
-      },
-    ],
+    dataResources: [],
     filters: ['人口・社会', '経済', '環境', '人間開発'],
   },
   {
@@ -66,24 +51,6 @@ export const sections: SectionInfo[] = [
           },
         ],
       },
-      {
-        name: 'SSDSE（教育用標準データセット）',
-        source: '独立行政法人 統計センター',
-        sourceUrl: 'https://www.nstac.go.jp/use/literacy/ssdse/',
-        description:
-          'データ分析のための汎用素材として、独立行政法人統計センターが作成・公開している統計データです。',
-        filterTags: ['統計', '家計', '社会', '気候'],
-        downloadLinks: [
-          {
-            label: 'SSDSE C・Spreadsheet',
-            href: 'https://docs.google.com/spreadsheets/d/17GxwwUxYJWrbX_Lsx8zoN2hPuImjmwFfcDo5hBnrRyk/edit?usp=sharing',
-          },
-          {
-            label: 'SSDSE E・Spreadsheet',
-            href: 'https://docs.google.com/spreadsheets/d/1yQN9UEITh9prtWi-gMZJbf7j30ExUXzGTTPncKjVlMc/edit?usp=sharing',
-          },
-        ],
-      },
     ],
     filters: ['統計', '家計', '社会', '気候', '地図'],
   },
@@ -97,26 +64,7 @@ export const sections: SectionInfo[] = [
     backgroundUrl:
       'https://images.unsplash.com/photo-1489515217757-5fd1be406fef?auto=format&fit=crop&w=1920&q=80',
     overlay: 'from-slate-950/95 via-indigo-900/70 to-indigo-900/30',
-    dataResources: [
-      {
-        name: 'Starbucks 店舗リスト',
-        source: '店舗検索｜スターバックス コーヒー ジャパン',
-        sourceUrl: 'https://store.starbucks.co.jp/',
-        description:
-          '公式サイトで公開されている東京都における店舗情報（緯度経度は含みません）。',
-        filterTags: ['飲食'],
-        downloadLinks: [
-          {
-            label: '特別区23区・Spreadsheet',
-            href: 'https://docs.google.com/spreadsheets/d/1qILkYLhNJ6Hzu8uO-MTKJndNAkij6pf9eqmfGUnu3Pk/edit?usp=sharing',
-          },
-          {
-            label: '多摩地区・Spreadsheet',
-            href: 'https://docs.google.com/spreadsheets/d/1UfyW3cGp9eAfSpNJPtsGxxxSYb95_-o4Z7M_gHIxn54/edit?usp=sharing',
-          },
-        ],
-      },
-    ],
+    dataResources: [],
     filters: ['住居', '旅行', '飲食', '地図'],
   },
   {
@@ -172,34 +120,6 @@ export const sections: SectionInfo[] = [
           {
             label: '2ファイル版・Spreadsheet',
             href: 'https://docs.google.com/spreadsheets/d/15Z8Y9TIe4Lx17U_IOYp0UfWrKevzz-3CiospEBIE3WU/edit?usp=sharing',
-          },
-        ],
-      },
-      {
-        name: '甲子園出場者の出身地',
-        source: '',
-        sourceUrl: '',
-        description: '甲子園出場校のベンチ入り20名がどの都道府県出身なのか',
-        filterTags: ['スポーツ', 'ネットワーク'],
-        downloadLinks: [
-          {
-            label: '1ファイル版・Spreadsheet',
-            href: 'https://docs.google.com/spreadsheets/d/1HdfkDOGBovb-YT1kOxqdu5mFr3KGKXbreD0c8HyjxOU/edit?usp=sharing',
-          },
-        ],
-      },
-      {
-        name: 'IBM 従業員の離職率とパフォーマンス',
-        source: 'Kaggle',
-        sourceUrl:
-          'https://www.kaggle.com/datasets/pavansubhasht/ibm-hr-analytics-attrition-dataset',
-        description:
-          'IBMのデータサイエンティストが作成した架空のデータセット。従業員の様々な属性を一つの表データにしています。',
-        filterTags: ['人事'],
-        downloadLinks: [
-          {
-            label: 'CSV',
-            href: '/datasets/5_communities/employee/employee.csv',
           },
         ],
       },
